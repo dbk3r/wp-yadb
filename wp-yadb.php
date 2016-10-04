@@ -8,6 +8,7 @@ Version: 0.11 Alpha
 Author: Denis Becker
 */
 
+
 function insert_wpyadb() {
 
 	global $current_user;
