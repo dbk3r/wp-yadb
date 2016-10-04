@@ -3,16 +3,16 @@
 function wpyadb_new_topic()
 {
 
-	# $settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'quicktags' => false );
-	$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true );
+	$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'quicktags' => false );
+	#$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'paste_data_images' => true );
 	global $current_user;
 ?>
 	<tr>
-		<td colspan="6">		
-			<div class="wpyadb_new_Topic_Header" style="display:none;width:100%">		
+		<td colspan="6">
+			<div class="wpyadb_new_Topic_Header" style="display:none;width:100%">
 				<table>
 				<tr style="border:0px">
-					<td>Topic</td>							
+					<td>Topic</td>
 					<td colspan="3" style="text-align:left">
 						<input type="text" name="wpyadb_topic_desc" id="wpyadb_topic_desc" style="width:100%">
 						<input type="hidden" name="wpyadb_username" id="wpyadb_username" value="<?php echo $current_user->user_login; ?>">
@@ -31,8 +31,8 @@ function wpyadb_new_topic()
 						?>
 					</td>
 				</tr>
-				</table>					
-			</div>			
+				</table>
+			</div>
 		</td>
 	</tr>
 	<tr>
@@ -44,7 +44,7 @@ function wpyadb_new_topic()
 			</div>
 		</td>
 	</tr>
-	
+
 <?php
 }
 
