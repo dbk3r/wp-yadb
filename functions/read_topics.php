@@ -1,27 +1,20 @@
 
 <?php
-
-
-function wpyadb_hello ()
-{
-	global $current_user;
-	echo "Hello: "; echo "[".$current_user->user_login."]";
-}
-
+?>
+	<table class="wp_yadb_table">
+<?php
 function wpyadb_menu()
 {
 	global $current_user;
-	
-?>
-	<table>
-<?php	
+
+
 	if($current_user->user_login)
 	{
-?>	
+?>
 	<tr>
 		<td colspan=6 style="text-align:right" class=wpyadb_menu></td>
 	</tr>
-	
+
 <?php
 	}
 }
@@ -38,19 +31,19 @@ function wpyadb_header()
 
 function wpyadb_topics()
 {
-	global $wpdb;
-	$topics = $wpdb->get_results("SELECT * FROM wp_wpyadb order by time DESC LIMIT 25;");
-	foreach($topics as $topic)
-	{
-		$Activity = "edit|delete";
-		$uuid = $topic->uuid;
-		echo "<tr class=wp_yadb_row>";
-		echo "<td style=text-align:left>$topic->topic_text<br><small>$topic->time</small></td><td>$topic->categorie</td><td align=left>$Users</td><td>$Replies</td><td>$topic->views</td><td align=right><small>$Activity</smalL></td>";
-		echo "</tr>";
-		
-	}
-	
+	print "<tr class=wp_yadb_row><td colspan=6></td></tr>";
+	#include_once(ABSPATH . 'wp-content/plugins/wp-yadb/functions/dynload.php');
+}
 
+function wpyadb_loader()
+{
+?>
+
+	<tr>
+		<td colspan=6><img class="loader-image" src="/wp/wp-content/plugins/wp-yadb/img/ajax-loader.gif"</td>
+	</tr>
+
+<?php
 }
 
 function wpyadb_footer()

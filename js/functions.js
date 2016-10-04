@@ -53,15 +53,58 @@ function isEmpty(str) {
 jQuery(document).ready(function() {
   mbtn_new();
 	mbtn_save();
+
+	var track_page = 1;
+	var loading = false;
+	yadb_load_contents(track_page);
+
+	jQuery(window).scroll(function(){
+		if (jQuery(window).scrollTop() + jQuery(window).height() >= jQuery(document).height()){
+			track_page++;
+			yadb_load_contents(track_page);
+		}
+	});
+
+	function yadb_load_contents(track_page){
+    if(loading == false){
+        loading = true;  //set loading flag on
+        jQuery('.loader-image').show(); //show loading animation
+				jQuery.ajax({
+					type:'POST',
+					url:'/wp/wp-content/plugins/wp-yadb/functions/dynload.php',
+					data:'page='+track_page,
+					beforeSend:function(data){
+							jQuery('.loader-image').show();
+          },
+          success:function(data){
+
+										loading = false; //set loading flag off once the content is loaded
+										jQuery('.loader-image').hide();
+				            if(data.trim().length == 0){
+				                //notify user if nothing to load
+												jQuery('.loader-image').hide();
+				                return;
+				            }
+
+                    var rowSet = jQuery(data);
+										rowSet.hide();
+										jQuery(".wp_yadb_row").last().after(rowSet);
+										rowSet.fadeIn(1000);
+
+          }
+				});
+    }
+}
+
 	jQuery(".btn_wpyadb-new-topic").click(function() {
-	jQuery(".wpyadb_menu_save").show();
-  jQuery(".wpyadb_menu_new").hide();
-  jQuery(".wpyadb_new_Topic_Header").slideDown();
-  tinymce.get('wpyadb_new_edit').setContent('');
-  jQuery('#wpyadb_topic_desc').val('');
-  jQuery(".wpyadb_Editor").slideDown();
-  jQuery('#wpyadb_topic_desc').focus();
-});
+		jQuery(".wpyadb_menu_save").show();
+	  jQuery(".wpyadb_menu_new").hide();
+	  jQuery(".wpyadb_new_Topic_Header").slideDown();
+	  tinymce.get('wpyadb_new_edit').setContent('');
+	  jQuery('#wpyadb_topic_desc').val('');
+	  jQuery(".wpyadb_Editor").slideDown();
+	  jQuery('#wpyadb_topic_desc').focus();
+	});
 
 	jQuery(".btn_wpyadb-save-topic").click(function() {
 		var editor = tinyMCE.get('wpyadb_new_edit');
@@ -89,5 +132,4 @@ jQuery(document).ready(function() {
         	alert ("please fill out topic Description and the Topic-Content");
         }
     });
-
 });

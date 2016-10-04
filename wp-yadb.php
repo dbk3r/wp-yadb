@@ -23,13 +23,12 @@ function insert_wpyadb() {
 	<Script type="text/javascript" src="/wp/wp-content/plugins/wp-yadb/js/functions.js"></Script>
 <?php
 
-	# echo $current_user->user_login;
-			#wpyadb_hello();
 			wpyadb_menu();
 			wpyadb_new_topic();
 			wpyadb_header();
 			wpyadb_topics();
 			wpyadb_menu();
+			wpyadb_loader();
 			wpyadb_footer();
 ?>
 	</div>
