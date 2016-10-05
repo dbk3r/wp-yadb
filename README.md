@@ -4,4 +4,4 @@
 a one Side Discourse Clone! (still in developement)
 
 - fully Wordpress Integration
-- - User & Category Management done in Wordpress
+- User & Category Management done in Wordpress
