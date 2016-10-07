@@ -21,9 +21,9 @@
   if(!empty($topics)) {
     foreach($topics as $topic) {
       $user = get_userdatabylogin($topic->username);
-      $users = get_avatar($user->ID,30);
-      $Activity = "edit|delete";
-      $output .= '<tr class=wp_yadb_row>';
+      if ($user->ID) { $users = get_avatar($user->ID,30); } else {$users = "";}
+      $Activity = "";
+      $output .= '<tr class=wp_yadb_row onclick="loadTopicContent(this,\'' .$topic->uuid . '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>';
       $output .= '<td style=text-align:left>'. $topic->topic_text . '<br><small>' .$topic->time . '</small></td>';
       $output .= '<td>' . $topic->categorie . '</td>';
       $output .= '<td align=left>' . $users . '</td>';

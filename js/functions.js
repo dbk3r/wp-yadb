@@ -39,6 +39,11 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 
 }
 
+function rowOver(me,op,bcolor) {
+	me.style.opacity=op;
+	me.style.background=bcolor;
+}
+
 function mbtn_new() {
 	jQuery(".wpyadb_menu").append('<div class="wpyadb_menu_new"><a style="cursor:pointer" class="btn_wpyadb-new-topic" >NEW TOPIC</a></div>');
 }
