@@ -85,7 +85,6 @@ jQuery(document).ready(function() {
 												jQuery('.loader-image').hide();
 				                return;
 				            }
-
                     var rowSet = jQuery(data);
 										rowSet.hide();
 										jQuery(".wp_yadb_row").last().after(rowSet);
