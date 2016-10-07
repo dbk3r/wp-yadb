@@ -15,8 +15,9 @@
       foreach($topics as $topic) {
         $user = get_userdatabylogin($topic->username);
         if ($user->ID) { $users = get_avatar($user->ID,30,"",$topic->username); } else {$users = "";}
-        $post_text = str_replace("&semicolon&", ";", $topic->post_text);
-
+        # $post_text = str_replace("&semicolon&", ";", $topic->post_text);
+        $post_text = base64_decode($topic->post_text);
+        $post_text = str_replace("\\", "", $post_text);
         $Activity = "";
         $output .= '<tr class=' . $_POST['uuid'] . '>';
         $output .= '<td colspan=6>';
@@ -29,6 +30,8 @@
         $output .= '<td colspan=2>' . $post_text;
         $output .= '</td>';
         $output .= '</tr>';
+        $output .= '<td colspan=2 style="text-align:right;"><a style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a>';
+        $output .= '</td>';
         $output .= '</table>';
     		$output .= '</tr>';
       }
@@ -41,7 +44,7 @@
     $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
     $position = (($page_number-1) * $item_per_page);
 
-    $sql = "SELECT * from " . $table_name;
+    $sql = "SELECT * from " . $table_name . " where reply='0' ";
 
     $yadb_query =  $sql . " order by time DESC limit " . $position . "," . $item_per_page . ";";
     $topics = $wpdb->get_results($yadb_query);
