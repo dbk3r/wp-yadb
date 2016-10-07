@@ -20,6 +20,8 @@
   $output = '';
   if(!empty($topics)) {
     foreach($topics as $topic) {
+      $user = get_userdatabylogin($topic->username);
+      $users = get_avatar($user->ID,30);
       $Activity = "edit|delete";
       $output .= '<tr class=wp_yadb_row>';
       $output .= '<td style=text-align:left>'. $topic->topic_text . '<br><small>' .$topic->time . '</small></td>';
