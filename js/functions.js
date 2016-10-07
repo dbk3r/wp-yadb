@@ -2,7 +2,7 @@
 function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc, wpyadb_content) {
 	if(isEmpty(wpyadb_id)) {
 		// create new DB-Entry
-		alert(wpyadb_content);
+		//alert(wpyadb_content);
 		var formData = {reply:"0",user:wpyadb_user,category:wpyadb_category,desc:wpyadb_desc,content:wpyadb_content};
 
 		jQuery.ajax({
@@ -12,7 +12,7 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 		    success: function(data, textStatus, jqXHR)
 		    {
 		    	var dat = jQuery.parseJSON(data);
-		    	var newTopic = jQuery('<tr class=wp_yadb_row></tr>' +
+		    	var newTopic = jQuery('<tr class=wp_yadb_row onclick="loadTopicContent(this,\'' + dat.uuid + '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>' +
 		    					'<td style=text-align:left>' + wpyadb_desc + '<br><small>' + dat.date + '</small></td>' +
 		    					'<td>' + wpyadb_category + '</td>' +
 		    					'<td>' + wpyadb_user + '</td>' +
