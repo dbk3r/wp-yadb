@@ -23,6 +23,8 @@ function insert_wpyadb() {
 	<Script type="text/javascript" src="/wp/wp-content/plugins/wp-yadb/js/functions.js"></Script>
 <?php
 
+//require_once('functions/froala.php');
+
 			wpyadb_menu();
 			wpyadb_new_topic();
 			wpyadb_header();
@@ -54,11 +56,12 @@ function wpyadb_activate() {
 	$charset_collate = $wpdb->get_charset_collate();
 	$sql = "CREATE TABLE $table_name (
 		id bigint NOT NULL AUTO_INCREMENT,
+		reply varchar(1),
 		uuid varchar(255),
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 		username tinytext NOT NULL,
 		topic_text text NOT NULL,
-		post_text text NOT NULL,
+		post_text text CHARACTER SET ascii NOT NULL,
 		categorie varchar(255) DEFAULT '' NOT NULL,
 		views int DEFAULT 0,
 		url varchar(55) DEFAULT '' NOT NULL,

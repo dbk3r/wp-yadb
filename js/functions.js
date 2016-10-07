@@ -3,7 +3,7 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 	if(isEmpty(wpyadb_id)) {
 		// create new DB-Entry
 
-		var formData = {user:wpyadb_user,category:wpyadb_category,desc:wpyadb_desc,content:wpyadb_content};
+		var formData = {reply:"0",user:wpyadb_user,category:wpyadb_category,desc:wpyadb_desc,content:wpyadb_content};
 
 		jQuery.ajax({
 		    url : "/wp/wp-content/plugins/wp-yadb/functions/save_topic.php",
@@ -39,6 +39,40 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 
 }
 
+function loadTopicContent(me,uuid) {
+	//yadb_load_contents(track_page,"topic",me,uuid);
+
+	if(jQuery("." + uuid).length) {
+		jQuery("." + uuid).remove();
+	}
+	else {
+
+		var formData = {content:"topic",uuid:uuid};
+		jQuery('.loader-image').show(); //show loading animation
+		jQuery.ajax({
+			type:'POST',
+			url:'/wp/wp-content/plugins/wp-yadb/functions/dynload.php',
+			data:formData,
+			beforeSend:function(data){
+					jQuery('.loader-image').show();
+			},
+			success:function(data){
+
+								jQuery('.loader-image').hide();
+								if(data.trim().length == 0){
+										//notify user if nothing to load
+										jQuery('.loader-image').hide();
+										return;
+								}
+								var rowSet = jQuery(data);
+								rowSet.hide();
+								jQuery(me).last().after(rowSet);
+								rowSet.slideDown(1000);
+			}
+		});
+	}
+}
+
 function rowOver(me,op,bcolor) {
 	me.style.opacity=op;
 	me.style.background=bcolor;
@@ -51,9 +85,11 @@ function mbtn_new() {
 function mbtn_save() {
 	 jQuery(".wpyadb_menu").prepend('<div style="display:none" class="wpyadb_menu_save"><a style="cursor:pointer" class="btn_wpyadb-save-topic" >SAVE TOPIC</a></div>');
 }
+
 function isEmpty(str) {
     return (!str || 0 === str.length);
 }
+
 
 jQuery(document).ready(function() {
   mbtn_new();
@@ -61,23 +97,27 @@ jQuery(document).ready(function() {
 
 	var track_page = 1;
 	var loading = false;
-	yadb_load_contents(track_page);
+	yadb_load_contents(track_page,"topics","","");
 
 	jQuery(window).scroll(function(){
 		if (jQuery(window).scrollTop() + jQuery(window).height() >= jQuery(document).height()){
 			track_page++;
-			yadb_load_contents(track_page);
+			yadb_load_contents(track_page,"topics","","");
+
 		}
 	});
 
-	function yadb_load_contents(track_page){
+
+
+	function yadb_load_contents(track_page,cont,topic,uuid){
     if(loading == false){
         loading = true;  //set loading flag on
+				var formData = {page:track_page,content:cont,uuid:uuid};
         jQuery('.loader-image').show(); //show loading animation
 				jQuery.ajax({
 					type:'POST',
 					url:'/wp/wp-content/plugins/wp-yadb/functions/dynload.php',
-					data:'page='+track_page,
+					data:formData,
 					beforeSend:function(data){
 							jQuery('.loader-image').show();
           },
@@ -92,7 +132,12 @@ jQuery(document).ready(function() {
 				            }
                     var rowSet = jQuery(data);
 										rowSet.hide();
-										jQuery(".wp_yadb_row").last().after(rowSet);
+										if(cont == "topics") {
+											jQuery(".wp_yadb_row").last().after(rowSet);
+										}
+										if(cont == "topic") {
+											topic.last().after(rowSet);
+										}
 										rowSet.fadeIn(1000);
 
           }
@@ -105,7 +150,8 @@ jQuery(document).ready(function() {
 	  jQuery(".wpyadb_menu_new").hide();
 	  jQuery(".wpyadb_new_Topic_Header").slideDown();
 	  tinymce.get('wpyadb_new_edit').setContent('');
-	  jQuery('#wpyadb_topic_desc').val('');
+		//jQuery('#fr_editor').froalaEditor();
+		jQuery('#wpyadb_topic_desc').val('');
 	  jQuery(".wpyadb_Editor").slideDown();
 	  jQuery('#wpyadb_topic_desc').focus();
 	});

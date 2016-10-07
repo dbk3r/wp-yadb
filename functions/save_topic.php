@@ -13,8 +13,9 @@
 	$topic_text = $_POST['desc'];
 	$category = $_POST['category'];
 
+	$reply = $_POST['reply'];
 
-	$sql = "INSERT INTO $table_name set uuid='$uuid',time='$datetime',username='$user',topic_text='$topic_text',post_text='" . $wpdb->_escape($post_text) ."',categorie='$category'";
+	$sql = "INSERT INTO $table_name set reply='$reply',uuid='$uuid',time='$datetime',username='$user',topic_text='$topic_text',post_text='" . $post_text ."',categorie='$category'";
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
 

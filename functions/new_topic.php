@@ -3,7 +3,7 @@
 function wpyadb_new_topic()
 {
 
-	$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'quicktags' => false );
+	$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'quicktags' => false, 'automatic_uploads' => true );
 	#$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'paste_data_images' => true );
 	global $current_user;
 ?>
@@ -38,8 +38,11 @@ function wpyadb_new_topic()
 	<tr>
 		<td colspan="6">
 			<div class="wpyadb_Editor" style="display:none">
-				<div class="wrap">
-					<?php  wp_editor($content, "wpyadb_new_edit",$settings); ?>
+				<div class="wrap" id="fr_editor">
+					<?php
+					  wp_editor($content, "wpyadb_new_edit",$settings);
+
+						 ?>
 				</div>
 			</div>
 		</td>
