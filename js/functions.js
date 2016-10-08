@@ -1,12 +1,13 @@
 
+
+
 function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc, wpyadb_content) {
 	if(isEmpty(wpyadb_id)) {
 		// create new DB-Entry
-		//alert(wpyadb_content);
 		var formData = {reply:"0",user:wpyadb_user,category:wpyadb_category,desc:wpyadb_desc,content:wpyadb_content};
 
 		jQuery.ajax({
-		    url : "/wp/wp-content/plugins/wp-yadb/functions/save_topic.php",
+		    url : WPURLS.yadburl + "/functions/save_topic.php",
 		    type: "POST",
 		    data : formData,
 		    success: function(data, textStatus, jqXHR)
@@ -18,12 +19,12 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 		    					'<td>' + wpyadb_user + '</td>' +
 		    					'<td>0</td>' +
 		    					'<td>0</td>' +
-		    					'<td align=right><small>edit|delete</small></td>' +
+		    					'<td align=right><small></small></td>' +
 		    					'</tr>');
 		    	newTopic.hide();
 		    	jQuery(".wp_yadb_row").first().before(newTopic);
 
-		    	newTopic.slideDown();
+		    	newTopic.slideDown(1000);
 
 		        },
 		        error: function (jqXHR, textStatus, errorThrown)
@@ -43,7 +44,7 @@ function loadTopicContent(me,uuid) {
 	//yadb_load_contents(track_page,"topic",me,uuid);
 
 	if(jQuery("." + uuid).length) {
-		jQuery("." + uuid).remove();
+		jQuery("." + uuid).slideUp('slow').remove();
 	}
 	else {
 
@@ -51,7 +52,7 @@ function loadTopicContent(me,uuid) {
 		jQuery('.loader-image').show(); //show loading animation
 		jQuery.ajax({
 			type:'POST',
-			url:'/wp/wp-content/plugins/wp-yadb/functions/dynload.php',
+			url:WPURLS.yadburl + '/functions/dynload.php',
 			data:formData,
 			beforeSend:function(data){
 					jQuery('.loader-image').show();
@@ -67,7 +68,7 @@ function loadTopicContent(me,uuid) {
 								var rowSet = jQuery(data);
 								rowSet.hide();
 								jQuery(me).last().after(rowSet);
-								rowSet.slideDown(1000);
+								rowSet.slideDown('slow');
 			}
 		});
 	}
@@ -116,7 +117,7 @@ jQuery(document).ready(function() {
         jQuery('.loader-image').show(); //show loading animation
 				jQuery.ajax({
 					type:'POST',
-					url:'/wp/wp-content/plugins/wp-yadb/functions/dynload.php',
+					url:WPURLS.yadburl + '/functions/dynload.php',
 					data:formData,
 					beforeSend:function(data){
 							jQuery('.loader-image').show();
@@ -139,7 +140,6 @@ jQuery(document).ready(function() {
 											topic.last().after(rowSet);
 										}
 										rowSet.fadeIn(1000);
-
           }
 				});
     }

@@ -10,7 +10,6 @@
 	$datetime = date('Y-m-d H:i:s');
 	$user = $_POST['user'];
 	$post_text = base64_encode($_POST['content']);
-	#$post_text = str_replace(";", "&semicolon&", $_POST['content']);
 	$topic_text = $_POST['desc'];
 	$category = $_POST['category'];
 

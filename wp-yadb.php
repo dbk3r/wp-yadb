@@ -8,23 +8,23 @@ Version: 0.11 Alpha
 Author: Denis Becker
 */
 
-
 function insert_wpyadb() {
 
 	global $current_user;
+	$yadb_url = plugins_url() . "/wp-yadb";
 
 	require_once(ABSPATH . 'wp-includes/category.php');
 	require_once('functions/io.php');
 	require_once('functions/read_topic_content.php');
 	require_once('functions/new_topic.php');
 	require_once('functions/read_topics.php');
+
+	wp_register_script('mylib', "/wp-content/plugins/wp-yadb/js/functions.js");
+	wp_localize_script('mylib', 'WPURLS', array('yadburl' => plugins_url() . "/wp-yadb"));
+	wp_enqueue_script( 'mylib' );
 ?>
 	<div class='wrap'>
-	<Script type="text/javascript" src="/wp/wp-content/plugins/wp-yadb/js/functions.js"></Script>
 <?php
-
-//require_once('functions/froala.php');
-
 			wpyadb_menu();
 			wpyadb_new_topic();
 			wpyadb_header();

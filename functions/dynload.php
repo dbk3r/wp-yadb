@@ -1,6 +1,9 @@
 <?php
-  require_once( dirname( __FILE__ ) . '/../../../../wp-blog-header.php' );
+
+
+  require_once('../../../../wp-blog-header.php' );
   global $wpdb;
+
   $table_name = $wpdb->prefix . 'wpyadb';
 
   if($_POST['content'] == "topic") {
