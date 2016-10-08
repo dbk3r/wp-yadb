@@ -3,8 +3,11 @@
 
 a one Side Discourse Clone! (still in developement)
 
-- fully Wordpress Integration
-- User & Category Management done in Wordpress
+- fully Wordpress Integration.
+- Ajax Content loading/saving.
+- User & Category Management done in Wordpress.
+- dynamic loading topics.
+
 
 
 ## INSTALL

@@ -29,7 +29,7 @@
         $output .= '<th valign=top align=right width=100 style="border-left-style:none;"><small>'. $topic->time .'</small></th>';
         $output .= '</tr>';
         $output .= '<tr style="background:#ffffff">';
-        $output .= '<td colspan=3>' . convert_smilies( $post_text ) . '</td>';
+        $output .= '<td colspan=3 align=left>' . convert_smilies( $post_text ) . '</td>';
         $output .= '</tr>';
         $output .= '</table>';
     		$output .= '</tr>';
