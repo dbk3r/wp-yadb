@@ -24,11 +24,12 @@
         $output .= '<td colspan=6 style="border-bottom-style:none;">';
         $output .= '<table width=100% border=0 style="border-style:none;">';
         $output .= '<tr>';
-        $output .= '<th valign=top align=left style="border-right-style:none;">' . get_avatar($user->ID,60,"",$topic->username) .'</th>';
-        $output .= '<th align=right width=100 style="border-left-style:none;">'. $topic->time .'</th>';
+        $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
+        $output .= '<th style="border-style:none;"></th>';
+        $output .= '<th valign=top align=right width=100 style="border-left-style:none;"><small>'. $topic->time .'</small></th>';
         $output .= '</tr>';
         $output .= '<tr style="background:#ffffff">';
-        $output .= '<td colspan=2>' . $post_text . '</td>';
+        $output .= '<td colspan=3>' . $post_text . '</td>';
         $output .= '</tr>';
         $output .= '</table>';
     		$output .= '</tr>';
