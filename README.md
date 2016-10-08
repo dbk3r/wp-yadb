@@ -12,8 +12,11 @@ a one Side Discourse Clone! (still in developement)
 
 ## INSTALL
 
-clone repo to wp-content/plugins/, activate plugin within wp-admin/plugins
- or grab a current test version [zip-file] and install through your WP Admin Plugin-Side
+- clone repo to wp-content/plugins/ folder
+- or grab a current test version [zip-file] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php)
+- activate plugin (/wp/wp-admin/plugins.php)
+
+
 - use shortcode [wpyadb] to insert your Discussion Board  :-)
 
 ### Demo

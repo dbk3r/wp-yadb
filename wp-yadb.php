@@ -4,7 +4,7 @@
 Plugin Name: Yust Another Discuss Board
 Plugin URI: https://github.com/dbk3r/wp-yadb
 Description: Wordpress Discourse Clone
-Version: 0.11 Alpha
+Version: 0.12
 Author: Denis Becker
 */
 
