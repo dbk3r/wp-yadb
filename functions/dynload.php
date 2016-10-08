@@ -31,7 +31,7 @@
         $output .= '<tr style="background:#ffffff">';
         $output .= '<td colspan=3 align=left>' . convert_smilies( $post_text ) . '</td>';
         $output .= '</tr>';
-        $output .= '</table>';
+        $output .= '</table></td>';
     		$output .= '</tr>';
       }
       $output .= '<tr class=' . $_POST['uuid'] . ' style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;"><a style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a></td></tr>';

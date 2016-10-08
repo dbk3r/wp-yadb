@@ -68,7 +68,7 @@ function loadTopicContent(me,uuid) {
 								var rowSet = jQuery(data);
 								rowSet.hide();
 								jQuery(me).last().after(rowSet);
-								rowSet.slideDown('slow');
+								jQuery(rowSet).slideDown('slow');
 			}
 		});
 	}
@@ -139,7 +139,7 @@ jQuery(document).ready(function() {
 										if(cont == "topic") {
 											topic.last().after(rowSet);
 										}
-										rowSet.fadeIn(1000);
+										rowSet.fadeIn(500);
           }
 				});
     }

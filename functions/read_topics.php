@@ -8,15 +8,15 @@ function wpyadb_menu()
 	global $current_user;
 
 
-	if($current_user->user_login)
-	{
+	#if($current_user->user_login)
+	#{
 ?>
 	<tr >
 		<td colspan=6 style="text-align:right" class=wpyadb_menu></td>
 	</tr>
 
 <?php
-	}
+	#}
 }
 
 function wpyadb_header()
