@@ -11,7 +11,7 @@ function wpyadb_menu()
 	if($current_user->user_login)
 	{
 ?>
-	<tr>
+	<tr >
 		<td colspan=6 style="text-align:right" class=wpyadb_menu></td>
 	</tr>
 
@@ -22,7 +22,7 @@ function wpyadb_menu()
 function wpyadb_header()
 {
 ?>
-		<tr>
+		<tr  >
 			<th style=text-align:left>Topic</th><th>Category</th><th>Author</th><th>Replies</th><th>Views</th><th>Activity</th>
 		</tr>
 

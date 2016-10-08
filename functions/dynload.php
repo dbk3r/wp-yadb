@@ -24,7 +24,7 @@
         $output .= '<td colspan=6 style="border-bottom-style:none;">';
         $output .= '<table width=100% border=0 style="border-style:none;">';
         $output .= '<tr>';
-        $output .= '<th valign=top align=left style="border-right-style:none;">' . get_avatar($user->ID,40,"",$topic->username) .'</th>';
+        $output .= '<th valign=top align=left style="border-right-style:none;">' . get_avatar($user->ID,60,"",$topic->username) .'</th>';
         $output .= '<th align=right width=100 style="border-left-style:none;">'. $topic->time .'</th>';
         $output .= '</tr>';
         $output .= '<tr style="background:#ffffff">';
@@ -59,7 +59,7 @@
     if(!empty($topics)) {
       foreach($topics as $topic) {
         $user = get_userdatabylogin($topic->username);
-        if ($user->ID) { $users = get_avatar($user->ID,24,"",$topic->username); } else {$users = "";}
+        if ($user->ID) { $author = $topic->username; } else {$author = "";}
         date_default_timezone_set("Europe/Berlin");
         $age = intval((strtotime(date('Y-m-d H:i:s')) - strtotime($topic->time)) / 60);
         if ($age < 1440) {
@@ -75,7 +75,7 @@
         $output .= '<tr class=wp_yadb_row onclick="loadTopicContent(this,\'' .$topic->uuid . '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>';
         $output .= '<td style=text-align:left>'. $topic->topic_text . '<br><small>' .$topic->time . '</small></td>';
         $output .= '<td>' . $topic->categorie . '</td>';
-        $output .= '<td align=left>' . $users . '</td>';
+        $output .= '<td align=left>' . $author . '</td>';
         $output .= '<td>' . $replies . '</td>';
         $output .= '<td>' . $topic->views . '</td>';
         $output .= '<td align=right><small>' .$Activity . '</small></td>';
