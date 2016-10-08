@@ -1,7 +1,7 @@
 # Wordpress Plugin : Yust Another Discussion Board
 
 
-a one Side Discourse Clone! (still in developement)
+a one Side  Discussion Board! (still in developement)
 
 - fully Wordpress Integration.
 - Ajax Content loading/saving.
