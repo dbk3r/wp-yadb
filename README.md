@@ -9,5 +9,5 @@ a one Side Discourse Clone! (still in developement)
 
 ## INSTALL
 
-clone repo to wp-content/plugins/, activate plugin und wp-admin/plugins
+clone repo to wp-content/plugins/, activate plugin within wp-admin/plugins
 use shortcode [wpyadb] to insert thi Discussion Board  :-)
