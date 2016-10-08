@@ -32,7 +32,7 @@ function wpyadb_header()
 function wpyadb_topics()
 {
 	print "<tr class=wp_yadb_row><td colspan=6></td></tr>";
-	#include_once(ABSPATH . 'wp-content/plugins/wp-yadb/functions/dynload.php');
+
 }
 
 function wpyadb_loader()
@@ -40,7 +40,7 @@ function wpyadb_loader()
 ?>
 
 	<tr>
-		<td colspan=6><img class="loader-image" src="/wp/wp-content/plugins/wp-yadb/img/ajax-loader.gif"</td>
+		<td colspan=6><img class="loader-image" src="<?php echo plugins_url(); ?>/wp-yadb/img/ajax-loader.gif"</td>
 	</tr>
 
 <?php
@@ -51,7 +51,7 @@ function wpyadb_footer()
 
 ?>
 		<tr>
-			<td colspan=6> (c) by Denis Becker</td>
+			<td colspan=6> (c) by Denis Becker 2016</td>
 		</tr>
 	</table>
 <?php
