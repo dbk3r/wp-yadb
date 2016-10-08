@@ -13,7 +13,7 @@ a one Side Discourse Clone! (still in developement)
 ## INSTALL
 
 - clone repo to wp-content/plugins/ folder
-- or grab a current test version [zip-file] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php)
+- or grab a current [test-version] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php)
 - activate plugin (/wp/wp-admin/plugins.php)
 
 
@@ -24,4 +24,4 @@ a one Side Discourse Clone! (still in developement)
 [Live-Demo]
 
 [Live-Demo]:http://dbk3r.spdns.de/wp/index.php/forum/
-[zip-file]:http://dbk3r.spdns.de/dl/wp-yadb.zip
+[test-version]:http://dbk3r.spdns.de/dl/wp-yadb.zip
