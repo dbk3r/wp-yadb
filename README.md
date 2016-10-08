@@ -18,7 +18,6 @@ clone repo to wp-content/plugins/, activate plugin within wp-admin/plugins
 
 ### Demo
 
-take a look how it look like
 [Live-Demo]
 
 [Live-Demo]:http://dbk3r.spdns.de/wp/index.php/forum/
