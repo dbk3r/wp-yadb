@@ -46,6 +46,10 @@
     $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
     $position = (($page_number-1) * $item_per_page);
 
+    $reply_sql = "SELECT COUNT(*) AS total from " . $table_name . "where reply='1' ";
+    $replies_result = $wpdb->get_results($reply_sql);
+    if($replies_result->total) { $replies = $replies_result->total; } else { $replies = 0;}
+
     $sql = "SELECT * from " . $table_name . " where reply='0' ";
 
     $yadb_query =  $sql . " order by time DESC limit " . $position . "," . $item_per_page . ";";
@@ -72,7 +76,7 @@
         $output .= '<td style=text-align:left>'. $topic->topic_text . '<br><small>' .$topic->time . '</small></td>';
         $output .= '<td>' . $topic->categorie . '</td>';
         $output .= '<td align=left>' . $users . '</td>';
-        $output .= '<td>' . $Replies . '</td>';
+        $output .= '<td>' . $replies . '</td>';
         $output .= '<td>' . $topic->views . '</td>';
         $output .= '<td align=right><small>' .$Activity . '</small></td>';
     		$output .= '</tr>';
