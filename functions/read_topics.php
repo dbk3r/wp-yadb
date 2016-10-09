@@ -26,6 +26,8 @@ function wpyadb_header()
 </div>
 <div class="topic-viewer" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;opacity:1;">
 </div>
+<div class="topic-edit" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;opacity:1;">
+</div>
 
 		<tr  >
 			<th style=text-align:left>Topic</th><th>Category</th><th>Author</th><th>Replies</th><th>Views</th><th>Activity</th>

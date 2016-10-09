@@ -40,6 +40,17 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 
 }
 
+function edit_topic(yadb_id) {
+	alert(yadb_id);
+}
+
+function delete_topic(yadb_id) {
+	if (confirm('do you realy want to delete this topic?')) {
+		jQuery(".yadb-overlay, .topic-viewer").fadeOut();
+		jQuery(".topic-viewer").empty();
+	}
+}
+
 function loadTopicContent(me,uuid) {
 	//yadb_load_contents(track_page,"topic",me,uuid);
 
