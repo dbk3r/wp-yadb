@@ -1,6 +1,16 @@
 
 <?php
 ?>
+<div class="yadb-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background-color:black;opacity:0.8;display:none">
+</div>
+<div class="topic-viewer" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;opacity:1;">
+</div>
+<div class="topic-edit" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;opacity:1;">
+</div>
+<div class="loader-image" style="position:fixed;top:50%;left:50%;width:100px;height:100px;background-color:white;border:2px;text-align:center;margin-top: -50px;margin-left: -100px;">
+	<img  height="50" width="50" style="margin-top:25px" src="<?php echo plugins_url(); ?>/wp-yadb/img/ajax-loader.gif">
+</div>
+
 	<table class="wp_yadb_table">
 <?php
 function wpyadb_menu()
@@ -22,12 +32,7 @@ function wpyadb_menu()
 function wpyadb_header()
 {
 ?>
-<div class="yadb-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background-color:black;opacity:0.8;display:none">
-</div>
-<div class="topic-viewer" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;opacity:1;">
-</div>
-<div class="topic-edit" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;opacity:1;">
-</div>
+
 
 		<tr  >
 			<th style=text-align:left>Topic</th><th>Category</th><th>Author</th><th>Replies</th><th>Views</th><th>Activity</th>
@@ -42,16 +47,6 @@ function wpyadb_topics()
 
 }
 
-function wpyadb_loader()
-{
-?>
-	<div class="loader-image" style="position:fixed;top:50%;left:50%;width:100px;height:100px;background-color:white;border:2px;text-align:center;margin-top: -50px;margin-left: -100px;">
-		<img  height="50" width="50" style="margin-top:25px" src="<?php echo plugins_url(); ?>/wp-yadb/img/ajax-loader.gif">
-	</div>
-
-
-<?php
-}
 
 function wpyadb_footer()
 {

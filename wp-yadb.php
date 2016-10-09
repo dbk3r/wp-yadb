@@ -31,7 +31,6 @@ function insert_wpyadb() {
 			wpyadb_header();
 			wpyadb_topics();
 			wpyadb_menu();
-			wpyadb_loader();
 			wpyadb_footer();
 ?>
 	</div>

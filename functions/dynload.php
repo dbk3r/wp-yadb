@@ -22,7 +22,7 @@
         $post_text = str_replace("\\", "", $post_text);
         $Activity = "";
         $output .= '<div class=' . $_POST['uuid'] . ' style="height:100%;"><table><tr style="background:#eeeeee;border-bottom-style:none;">';
-        $output .= '<td colspan=6 style="border-bottom-style:none;">';
+
         $output .= '<table width=100% border=0 style="border-style:none;">';
         $output .= '<tr>';
         $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
@@ -34,7 +34,11 @@
         }
         if (current_user_can('administrator')) {
           $output .= '<a onclick="delete_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img title="delete topic" src="'.$yadb_url.'/img/trash-16.png"></a> ';
-          $output .= '<a style="cursor:pointer"><img title="pin topic to the top" src="'.$yadb_url.'/img/pin-16.png"></a> ';
+          if($topic->pinned == "1") {
+              $output .= '<a  style="cursor:pointer"><img onclick="pin_topic(\'' . $topic->id . '\',\'0\');" id="pin_button" title="unppin topic to the top" src="'.$yadb_url.'/img/pinned-16.png"></a> ';
+          } else {
+              $output .= '<a  style="cursor:pointer"><img onclick="pin_topic(\'' . $topic->id . '\',\'1\');" id="pin_button" title="pin topic to the top" src="'.$yadb_url.'/img/pin-16.png"></a> ';
+          }
         }
 
         $output .= '</th>';
@@ -42,10 +46,10 @@
         $output .= '<tr style="background:#ffffff">';
         $output .= '<td colspan=3 style="text-align:left;">' . convert_smilies( $post_text ) . '</td>';
         $output .= '</tr>';
-        $output .= '</table></td>';
-    		$output .= '</tr>';
+
       }
       $output .= '<tr style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;"><a title="reply to main topic" style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a></td></tr>';
+
       $output .= '</table></div>';
       $sql = "UPDATE " . $table_name . " SET views=views+1 where uuid='" . $_POST['uuid'] . "';";
       require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -85,7 +89,7 @@
           $age = $gk . " " .intval($age / 60 / 24) . " days";
         }
         $Activity = $age;
-        $output .= '<tr class=wp_yadb_row onclick="loadTopicContent(this,\'' .$topic->uuid . '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>';
+        $output .= '<tr id="' .$topic->id . '" class=wp_yadb_row onclick="loadTopicContent(this,\'' .$topic->uuid . '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>';
         $output .= '<td style=text-align:left>'. $topic->topic_text . '<br><small>' .$topic->time . '</small></td>';
         $output .= '<td>' . $topic->categorie . '</td>';
         $output .= '<td align=left>' . $author . '</td>';

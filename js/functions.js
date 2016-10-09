@@ -40,6 +40,20 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 
 }
 
+function pin_topic(yadb_id,value) {
+	if(value == "0") {
+		jQuery("#pin_button").attr("src",WPURLS.yadburl + "/img/pin-16.png");
+		jQuery("#pin_button").attr("onclick","pin_topic('"+ yadb_id+"','1')");
+		jQuery("#pin_button").attr("title","pin topic");
+	}
+	else {
+		jQuery("#pin_button").attr("src",WPURLS.yadburl + "/img/pinned-16.png");
+		jQuery("#pin_button").attr("onclick","pin_topic('"+ yadb_id+"','0')");
+		jQuery("#pin_button").attr("title","unpin topic");
+	}
+
+}
+
 function edit_topic(yadb_id) {
 	alert(yadb_id);
 }
@@ -48,6 +62,7 @@ function delete_topic(yadb_id) {
 	if (confirm('do you realy want to delete this topic?')) {
 		jQuery(".yadb-overlay, .topic-viewer").fadeOut();
 		jQuery(".topic-viewer").empty();
+		jQuery("#"+yadb_id).remove();
 	}
 }
 
