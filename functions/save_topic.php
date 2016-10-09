@@ -9,6 +9,7 @@
 	date_default_timezone_set("Europe/Berlin");
 	$datetime = date('Y-m-d H:i:s');
 	$user = $_POST['user'];
+	if($user == "") {$user = "Guest";}
 	$post_text = base64_encode($_POST['content']);
 	$topic_text = $_POST['desc'];
 	$category = $_POST['category'];

@@ -61,7 +61,7 @@
     if(!empty($topics)) {
       foreach($topics as $topic) {
         $user = get_userdatabylogin($topic->username);
-        if ($user->ID) { $author = $topic->username; } else {$author = "";}
+        if ($user->ID) { $author = $topic->username; } else {$author = "Guest";}
         date_default_timezone_set("Europe/Berlin");
         $age = intval((strtotime(date('Y-m-d H:i:s')) - strtotime($topic->time)) / 60);
         if ($age < 1440) {
