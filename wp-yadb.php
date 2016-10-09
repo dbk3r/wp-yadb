@@ -3,7 +3,7 @@
 /*
 Plugin Name: Yust Another Discuss Board
 Plugin URI: https://github.com/dbk3r/wp-yadb
-Description: Wordpress Discourse Clone
+Description: Wordpress Discussion Board
 Version: 0.12
 Author: Denis Becker
 */
@@ -20,6 +20,7 @@ function insert_wpyadb() {
 	require_once('functions/read_topics.php');
 
 	wp_register_script('mylib', "/wp-content/plugins/wp-yadb/js/functions.js");
+	wp_register_script('mylib2', "/wp-content/plugins/wp-yadb/js/jquery.nicescroll.min.js");
 	wp_localize_script('mylib', 'WPURLS', array('yadburl' => plugins_url() . "/wp-yadb"));
 	wp_enqueue_script( 'mylib' );
 ?>
@@ -56,6 +57,7 @@ function wpyadb_activate() {
 	$charset_collate = $wpdb->get_charset_collate();
 	$sql = "CREATE TABLE $table_name (
 		id bigint NOT NULL AUTO_INCREMENT,
+		pinned int DEFAULT 0,
 		reply varchar(1),
 		uuid varchar(255),
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,

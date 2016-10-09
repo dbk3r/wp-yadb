@@ -49,26 +49,30 @@ function loadTopicContent(me,uuid) {
 	else {
 
 		var formData = {content:"topic",uuid:uuid};
-		jQuery('.loader-image').show(); //show loading animation
+
 		jQuery.ajax({
 			type:'POST',
 			url:WPURLS.yadburl + '/functions/dynload.php',
 			data:formData,
 			beforeSend:function(data){
-					jQuery('.loader-image').show();
+					jQuery('.loader-image').hide().fadeIn();
 			},
 			success:function(data){
 
-								jQuery('.loader-image').hide();
+								jQuery('.loader-image').fadeOut();
 								if(data.trim().length == 0){
 										//notify user if nothing to load
-										jQuery('.loader-image').hide();
+										jQuery('.loader-image').fadeOut();
 										return;
 								}
-								var rowSet = jQuery(data);
-								rowSet.hide();
-								jQuery(me).last().after(rowSet);
-								jQuery(rowSet).slideDown('slow');
+								//var rowSet = jQuery(data);
+								jQuery(".topic-viewer").append(data).niceScroll();
+
+								jQuery(".yadb-overlay, .topic-viewer").fadeIn();
+
+								// rowSet.hide();
+								// jQuery(me).last().after(rowSet);
+								//jQuery(rowSet).slideDown('slow');
 			}
 		});
 	}
@@ -108,6 +112,11 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	jQuery(".yadb-overlay").click(function(){
+
+		jQuery(".yadb-overlay, .topic-viewer").fadeOut();
+		jQuery(".topic-viewer").empty();
+	});
 
 
 	function yadb_load_contents(track_page,cont,topic,uuid){
@@ -120,15 +129,15 @@ jQuery(document).ready(function() {
 					url:WPURLS.yadburl + '/functions/dynload.php',
 					data:formData,
 					beforeSend:function(data){
-							jQuery('.loader-image').show();
+							jQuery('.loader-image').hide().fadeIn();
           },
           success:function(data){
 
 										loading = false; //set loading flag off once the content is loaded
-										jQuery('.loader-image').hide();
+										jQuery('.loader-image').fadeOut();
 				            if(data.trim().length == 0){
 				                //notify user if nothing to load
-												jQuery('.loader-image').hide();
+												jQuery('.loader-image').fadeout();
 				                return;
 				            }
                     var rowSet = jQuery(data);

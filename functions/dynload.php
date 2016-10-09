@@ -20,12 +20,12 @@
         $post_text = base64_decode($topic->post_text);
         $post_text = str_replace("\\", "", $post_text);
         $Activity = "";
-        $output .= '<tr class=' . $_POST['uuid'] . ' style="background:#eeeeee;border-bottom-style:none;">';
+        $output .= '<div class=' . $_POST['uuid'] . ' style="height:100%;"><table><tr style="background:#eeeeee;border-bottom-style:none;">';
         $output .= '<td colspan=6 style="border-bottom-style:none;">';
         $output .= '<table width=100% border=0 style="border-style:none;">';
         $output .= '<tr>';
         $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
-        $output .= '<th style="border-style:none;"></th>';
+        $output .= '<th style="border-style:none;text-align:center">'. $topic->topic_text . '</th>';
         $output .= '<th valign=top align=right width=100 style="border-left-style:none;"><small>'. $topic->time .'</small></th>';
         $output .= '</tr>';
         $output .= '<tr style="background:#ffffff">';
@@ -34,7 +34,8 @@
         $output .= '</table></td>';
     		$output .= '</tr>';
       }
-      $output .= '<tr class=' . $_POST['uuid'] . ' style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;"><a style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a></td></tr>';
+      $output .= '<tr style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;"><a style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a></td></tr>';
+      $output .= '</table></div>';
       $sql = "UPDATE " . $table_name . " SET views=views+1 where uuid='" . $_POST['uuid'] . "';";
       require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
       dbDelta( $sql );
@@ -47,7 +48,7 @@
     $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
     $position = (($page_number-1) * $item_per_page);
 
-    $reply_sql = "SELECT COUNT(*) AS total from " . $table_name . "where reply='1' ";
+    $reply_sql = "SELECT COUNT(*) AS total from " . $table_name . " where reply='1' ";
     $replies_result = $wpdb->get_results($reply_sql);
     if($replies_result->total) { $replies = $replies_result->total; } else { $replies = 0;}
 
