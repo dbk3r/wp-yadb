@@ -67,7 +67,7 @@ function loadTopicContent(me,uuid) {
 								}
 								//var rowSet = jQuery(data);
 								jQuery(".topic-viewer").append(data).niceScroll();
-
+								rowOver(me,'1','transparent');
 								jQuery(".yadb-overlay, .topic-viewer").fadeIn();
 
 								// rowSet.hide();
@@ -159,7 +159,6 @@ jQuery(document).ready(function() {
 	  jQuery(".wpyadb_menu_new").hide();
 	  jQuery(".wpyadb_new_Topic_Header").slideDown();
 	  tinymce.get('wpyadb_new_edit').setContent('');
-		//jQuery('#fr_editor').froalaEditor();
 		jQuery('#wpyadb_topic_desc').val('');
 	  jQuery(".wpyadb_Editor").slideDown();
 	  jQuery('#wpyadb_topic_desc').focus();
