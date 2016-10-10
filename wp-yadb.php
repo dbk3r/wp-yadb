@@ -56,7 +56,7 @@ function wpyadb_activate() {
 	$charset_collate = $wpdb->get_charset_collate();
 	$sql = "CREATE TABLE $table_name (
 		id bigint NOT NULL AUTO_INCREMENT,
-		pinned int DEFAULT 0,
+		pinned int(1) DEFAULT 0,
 		reply varchar(1),
 		uuid varchar(255),
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,

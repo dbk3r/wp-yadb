@@ -1,38 +1,44 @@
 
 
 
+function ajaxExecute(formData) {
+	return jQuery.ajax({
+			url : WPURLS.yadburl + "/functions/dbexecute.php",
+			type: "POST",
+			data : formData,
+			async: false,
+			success: function(retData, textStatus, jqXHR)
+			{
+
+			},
+			error: function (jqXHR, textStatus, errorThrown)
+			{
+
+			}
+	}).responseText;
+}
+
+function addSavedTopic(dat) {
+	var newTopic = jQuery('<tr class=wp_yadb_row onclick="loadTopicContent(this,\'' + dat.uuid + '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>' +
+					'<td style=text-align:left>' + dat.desc + '<br><small>' + dat.date + '</small></td>' +
+					'<td>' + dat.category + '</td>' +
+					'<td>' + dat.user + '</td>' +
+					'<td>0</td>' +
+					'<td>0</td>' +
+					'<td align=right><small></small></td>' +
+					'</tr>');
+	newTopic.hide();
+	jQuery(".wp_yadb_row").first().before(newTopic);
+	newTopic.fadeIn(500);
+}
+
 function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc, wpyadb_content) {
 	if(isEmpty(wpyadb_id)) {
 		// create new DB-Entry
-		var formData = {reply:"0",user:wpyadb_user,category:wpyadb_category,desc:wpyadb_desc,content:wpyadb_content};
-
-		jQuery.ajax({
-		    url : WPURLS.yadburl + "/functions/save_topic.php",
-		    type: "POST",
-		    data : formData,
-		    success: function(data, textStatus, jqXHR)
-		    {
-		    	var dat = jQuery.parseJSON(data);
-		    	var newTopic = jQuery('<tr class=wp_yadb_row onclick="loadTopicContent(this,\'' + dat.uuid + '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>' +
-		    					'<td style=text-align:left>' + wpyadb_desc + '<br><small>' + dat.date + '</small></td>' +
-		    					'<td>' + wpyadb_category + '</td>' +
-		    					'<td>' + wpyadb_user + '</td>' +
-		    					'<td>0</td>' +
-		    					'<td>0</td>' +
-		    					'<td align=right><small></small></td>' +
-		    					'</tr>');
-		    	newTopic.hide();
-		    	jQuery(".wp_yadb_row").first().before(newTopic);
-
-		    	newTopic.slideDown(1000);
-
-		        },
-		        error: function (jqXHR, textStatus, errorThrown)
-		        {
-
-		        }
-		});
-
+		var formData = {action:"newTopic",reply:"0",user:wpyadb_user,category:wpyadb_category,desc:wpyadb_desc,content:wpyadb_content};
+		var retVal = ajaxExecute(formData);
+		var data =  jQuery.parseJSON(retVal);
+		addSavedTopic(data);
 	} else {
 		// update DB-Entry
 		alert("user:" + wpyadb_user + "\ncategory: " + wpyadb_category + "\ndesc: " + wpyadb_desc + "\ncontent :\n\n" + wpyadb_content);
@@ -40,15 +46,23 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 
 }
 
-function pin_topic(yadb_id,value) {
+function pin_topic(uuid,yadb_id,value) {
 	if(value == "0") {
+		var formData = {action:"pinTopic",value:"0",yid:yadb_id};
+		retval = ajaxExecute(formData);
+		var data =  jQuery.parseJSON(retval);
+		
 		jQuery("#pin_button").attr("src",WPURLS.yadburl + "/img/pin-16.png");
-		jQuery("#pin_button").attr("onclick","pin_topic('"+ yadb_id+"','1')");
+		jQuery("#pin_button").attr("onclick","pin_topic('"+ uuid+"','"+ yadb_id+"','1')");
 		jQuery("#pin_button").attr("title","pin topic");
 	}
 	else {
+		var formData = {action:"pinTopic",value:"1",yid:yadb_id};
+		retval = ajaxExecute(formData);
+		var data =  jQuery.parseJSON(retval);
+
 		jQuery("#pin_button").attr("src",WPURLS.yadburl + "/img/pinned-16.png");
-		jQuery("#pin_button").attr("onclick","pin_topic('"+ yadb_id+"','0')");
+		jQuery("#pin_button").attr("onclick","pin_topic('"+ uuid+"','"+ yadb_id+"','0')");
 		jQuery("#pin_button").attr("title","unpin topic");
 	}
 
@@ -67,10 +81,9 @@ function delete_topic(yadb_id) {
 }
 
 function loadTopicContent(me,uuid) {
-	//yadb_load_contents(track_page,"topic",me,uuid);
 
 	if(jQuery("." + uuid).length) {
-		jQuery("." + uuid).slideUp('slow').remove();
+		jQuery("." + uuid).fadeOut('slow').remove();
 	}
 	else {
 
@@ -87,9 +100,8 @@ function loadTopicContent(me,uuid) {
 
 								jQuery('.loader-image').fadeOut();
 								if(data.trim().length == 0){
-										//notify user if nothing to load
 										jQuery('.loader-image').fadeOut();
-										return;
+
 								}
 								//var rowSet = jQuery(data);
 								jQuery(".topic-viewer").append(data).niceScroll();
@@ -126,6 +138,7 @@ jQuery(document).ready(function() {
   mbtn_new();
 	mbtn_save();
 
+
 	var track_page = 1;
 	var loading = false;
 	yadb_load_contents(track_page,"topics","","");
@@ -139,7 +152,6 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery(".yadb-overlay").click(function(){
-
 		jQuery(".yadb-overlay, .topic-viewer").fadeOut();
 		jQuery(".topic-viewer").empty();
 	});
@@ -163,7 +175,7 @@ jQuery(document).ready(function() {
 										jQuery('.loader-image').fadeOut();
 				            if(data.trim().length == 0){
 				                //notify user if nothing to load
-												jQuery('.loader-image').fadeout();
+												jQuery('.loader-image').fadeOut();
 				                return;
 				            }
                     var rowSet = jQuery(data);

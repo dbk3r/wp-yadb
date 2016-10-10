@@ -34,10 +34,13 @@
         }
         if (current_user_can('administrator')) {
           $output .= '<a onclick="delete_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img title="delete topic" src="'.$yadb_url.'/img/trash-16.png"></a> ';
-          if($topic->pinned == "1") {
-              $output .= '<a  style="cursor:pointer"><img onclick="pin_topic(\'' . $topic->id . '\',\'0\');" id="pin_button" title="unppin topic to the top" src="'.$yadb_url.'/img/pinned-16.png"></a> ';
-          } else {
-              $output .= '<a  style="cursor:pointer"><img onclick="pin_topic(\'' . $topic->id . '\',\'1\');" id="pin_button" title="pin topic to the top" src="'.$yadb_url.'/img/pin-16.png"></a> ';
+          if($topic->reply == "0") # pin only main Topic
+          {
+            if($topic->pinned == "1") {
+                $output .= '<a  style="cursor:pointer"><img onclick="pin_topic(\'' . $topic->uuid . '\',\'' . $topic->id . '\',\'0\');" id="pin_button" title="unppin topic to the top" src="'.$yadb_url.'/img/pinned-16.png"></a> ';
+            } else {
+                $output .= '<a  style="cursor:pointer"><img onclick="pin_topic(\'' . $topic->uuid . '\',\'' . $topic->id . '\',\'1\');" id="pin_button" title="pin topic to the top" src="'.$yadb_url.'/img/pin-16.png"></a> ';
+            }
           }
         }
 
@@ -69,7 +72,7 @@
 
     $sql = "SELECT * from " . $table_name . " where reply='0' ";
 
-    $yadb_query =  $sql . " order by pinned,time DESC limit " . $position . "," . $item_per_page . ";";
+    $yadb_query =  $sql . " order by pinned DESC , time DESC LIMIT " . $position . "," . $item_per_page . ";";
     $topics = $wpdb->get_results($yadb_query);
 
     $output = '';
