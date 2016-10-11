@@ -4,7 +4,8 @@
   global $wpdb;
 
   $table_name = $wpdb->prefix . 'wpyadb';
-
+  $yadb_url = plugins_url() . "/wp-yadb";
+  
   if($_POST['content'] == "topic") {
 
     $sql = "SELECT * from " . $table_name . " where uuid='" . $_POST['uuid'] . "'";
@@ -90,9 +91,17 @@
           if ($age < 1440) {$gk = "<";} else { $gk = ">"; }
           $age = $gk . " " .intval($age / 60 / 24) . " days";
         }
+        if($topic->pinned == "1") {
+          $pin_Image = '<div style="float: left;width:12px;height:100%;"><img src="'.$yadb_url.'/img/pinned-16.png"></div>';
+          $text_size = "92%";
+        }
+        else {
+          $pin_Image = "";
+          $text_size = "100%";
+        }
         $Activity = $age;
         $output .= '<tr id="' .$topic->id . '" class=wp_yadb_row onclick="loadTopicContent(this,\'' .$topic->uuid . '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>';
-        $output .= '<td style=text-align:left>'. $topic->topic_text . '<br><small>' .$topic->time . '</small></td>';
+        $output .= '<td style=text-align:left>'. $pin_Image . '<div style="width:' . $text_size . ';float:right">' .$topic->topic_text . '<br><small>' .$topic->time . '</small></div></td>';
         $output .= '<td>' . $topic->categorie . '</td>';
         $output .= '<td align=left>' . $author . '</td>';
         $output .= '<td>' . $replies . '</td>';
