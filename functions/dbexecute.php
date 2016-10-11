@@ -42,7 +42,6 @@
 		}
 		$return_value = "{\"sql\":\"" . $sql . "\"}";
 	}
-
 	$wpdb->query($sql);
 	echo $return_value;
 
