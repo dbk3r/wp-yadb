@@ -9,7 +9,7 @@ a one Side  Discussion Board! (still in developement)
 - dynamic loading topics.
 
 # ToDo
-- replay Topic (not implemented yes)
+- replay Topic (not implemented yet)
 
 ## INSTALL
 
