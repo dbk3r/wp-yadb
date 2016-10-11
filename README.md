@@ -8,7 +8,8 @@ a one Side  Discussion Board! (still in developement)
 - User & Category Management done in Wordpress.
 - dynamic loading topics.
 
-
+# ToDo
+- replay Topic (not implemented yes)
 
 ## INSTALL
 

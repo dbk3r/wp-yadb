@@ -6,7 +6,7 @@
 	</div>
 	<div class="topic-viewer" style="position:fixed;top:80px;left:50%;width:70%;height:70%;background-color:white;border-radius: 25px;border:4px solid #222222;text-align:left;margin-left:-35%;">
 	</div>
-	<div class="close-viewer" style="position:absolute;top:40px;right:30px;width:26px;height:26px;z-index:10;">
+	<div class="close-viewer" style="position:fixed;top:40px;right:30px;width:26px;height:26px;z-index:10;">
 		 <a style="cursor:pointer"><img  height="30" width="30" style="margin-top:15px" src="<?php echo plugins_url(); ?>/wp-yadb/img/close.png"></a>
 	</div>
 </div>
