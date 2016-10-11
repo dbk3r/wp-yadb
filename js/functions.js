@@ -153,7 +153,7 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	jQuery(".yadb-overlay").click(function(){
+	jQuery(".close-viewer").click(function(){
 		jQuery(".yadb-overlay").fadeOut();
 		jQuery(".topic-viewer").empty();
 	});
