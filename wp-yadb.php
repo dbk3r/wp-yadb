@@ -1,7 +1,7 @@
 <?php
 
 /*
-Plugin Name: Yust Another Discuss Board
+Plugin Name: Yust Another Discussion Board (YADB)
 Plugin URI: https://github.com/dbk3r/wp-yadb
 Description: Wordpress Discussion Board
 Version: 0.12

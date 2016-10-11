@@ -6,7 +6,7 @@ a one Side  Discussion Board! (still in developement)
 - fully Wordpress Integration.
 - Ajax Content loading/saving.
 - User & Category Management done in Wordpress.
-- dynamic loading topics.
+- dynamic loaded topics.
 
 # ToDo
 - replay Topic (not implemented yet)
