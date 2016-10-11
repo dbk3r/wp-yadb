@@ -5,7 +5,7 @@
 
   $table_name = $wpdb->prefix . 'wpyadb';
   $yadb_url = plugins_url() . "/wp-yadb";
-  
+
   if($_POST['content'] == "topic") {
 
     $sql = "SELECT * from " . $table_name . " where uuid='" . $_POST['uuid'] . "'";
@@ -25,7 +25,7 @@
         $output .= '<table width=100% border=0 style="border-style:none;">';
         $output .= '<tr>';
         $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
-        $output .= '<th style="border-style:none;text-align:center">'. $topic->topic_text . '</th>';
+        $output .= '<th style="border-style:none;text-align:center">'. base64_decode($topic->topic_text) . '</th>';
         $output .= '<th valign=top align=right width=100 style="border-left-style:none;"><small>'. $topic->time .'</small><br><br>';
 
         if ($current_user->user_login == $topic->username || current_user_can('editor') || current_user_can('administrator')) {
@@ -101,7 +101,7 @@
         }
         $Activity = $age;
         $output .= '<tr id="' .$topic->id . '" class=wp_yadb_row onclick="loadTopicContent(this,\'' .$topic->uuid . '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>';
-        $output .= '<td style=text-align:left>'. $pin_Image . '<div style="width:' . $text_size . ';float:right">' .$topic->topic_text . '<br><small>' .$topic->time . '</small></div></td>';
+        $output .= '<td style=text-align:left>'. $pin_Image . '<div style="width:' . $text_size . ';float:right">' .base64_decode($topic->topic_text) . '<br><small>' .$topic->time . '</small></div></td>';
         $output .= '<td>' . $topic->categorie . '</td>';
         $output .= '<td align=left>' . $author . '</td>';
         $output .= '<td>' . $replies . '</td>';

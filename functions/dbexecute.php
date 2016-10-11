@@ -12,13 +12,13 @@
 	$user = $_POST['user'];
 	if($user == "") {$user = "Guest";}
 	$post_text = base64_encode($_POST['content']);
-	$topic_text = $_POST['desc'];
+	$topic_text = base64_encode($_POST['desc']);
 	$category = $_POST['category'];
 	$reply = $_POST['reply'];
 	if ($_POST['action'] == "newTopic")
 	{
 		$sql = "INSERT INTO $table_name set reply='$reply',uuid='$uuid',time='$datetime',username='$user',topic_text='$topic_text',post_text='" . $post_text ."',categorie='$category'";
-		$return_value = "{\"category\":\"" . $category . "\",\"desc\":\"" . $topic_text . "\",\"user\":\"" . $user . "\",\"uuid\":\"" . $uuid . "\",\"date\":\"" . $datetime ."\",\"statement\":\"". $sql ."\"}";
+		$return_value = "{\"category\":\"" . $category . "\",\"desc\":\"" . base64_decode($topic_text) . "\",\"user\":\"" . $user . "\",\"uuid\":\"" . $uuid . "\",\"date\":\"" . $datetime ."\",\"statement\":\"". $sql ."\"}";
 	}
 	else if ($_POST['action'] == "pinTopic")
 	{
