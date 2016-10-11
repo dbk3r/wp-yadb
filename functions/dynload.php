@@ -1,9 +1,7 @@
 <?php
 
-
   require_once('../../../../wp-blog-header.php' );
   global $wpdb;
-
 
   $table_name = $wpdb->prefix . 'wpyadb';
 
@@ -33,7 +31,7 @@
           $output .= '<a onclick="edit_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img title="edit topic" src="'.$yadb_url.'/img/edit-16.png"></a> ';
         }
         if (current_user_can('administrator')) {
-          $output .= '<a onclick="delete_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img title="delete topic" src="'.$yadb_url.'/img/trash-16.png"></a> ';
+          $output .= '<a onclick="delete_topic(\'' . $topic->id . '\',\'' . $topic->reply . '\',\'' . $topic->uuid . '\');" style="cursor:pointer"><img title="delete topic" src="'.$yadb_url.'/img/trash-16.png"></a> ';
           if($topic->reply == "0") # pin only main Topic
           {
             if($topic->pinned == "1") {
@@ -55,8 +53,9 @@
 
       $output .= '</table></div>';
       $sql = "UPDATE " . $table_name . " SET views=views+1 where uuid='" . $_POST['uuid'] . "';";
-      require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-      dbDelta( $sql );
+      #require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+      $wpdb->query($sql);
+      #dbDelta( $sql );
     }
   }
 

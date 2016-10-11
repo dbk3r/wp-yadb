@@ -51,7 +51,7 @@ function pin_topic(uuid,yadb_id,value) {
 		var formData = {action:"pinTopic",value:"0",yid:yadb_id};
 		retval = ajaxExecute(formData);
 		var data =  jQuery.parseJSON(retval);
-		
+
 		jQuery("#pin_button").attr("src",WPURLS.yadburl + "/img/pin-16.png");
 		jQuery("#pin_button").attr("onclick","pin_topic('"+ uuid+"','"+ yadb_id+"','1')");
 		jQuery("#pin_button").attr("title","pin topic");
@@ -72,11 +72,16 @@ function edit_topic(yadb_id) {
 	alert(yadb_id);
 }
 
-function delete_topic(yadb_id) {
+function delete_topic(yadb_id,reply,uuid) {
 	if (confirm('do you realy want to delete this topic?')) {
-		jQuery(".yadb-overlay, .topic-viewer").fadeOut();
+
+		var formData = {action:"deleteTopic",yadb_id:yadb_id,reply:reply,uuid:uuid};
+		retval = ajaxExecute(formData);
+		var data =  jQuery.parseJSON(retval);
+		jQuery(".yadb-overlay").fadeOut();
 		jQuery(".topic-viewer").empty();
 		jQuery("#"+yadb_id).remove();
+
 	}
 }
 
@@ -103,14 +108,12 @@ function loadTopicContent(me,uuid) {
 										jQuery('.loader-image').fadeOut();
 
 								}
-								//var rowSet = jQuery(data);
 								jQuery(".topic-viewer").append(data).niceScroll();
 								rowOver(me,'1','transparent');
-								jQuery(".yadb-overlay, .topic-viewer").fadeIn();
+								jQuery(".yadb-overlay").fadeIn();
 
-								// rowSet.hide();
-								// jQuery(me).last().after(rowSet);
-								//jQuery(rowSet).slideDown('slow');
+
+
 			}
 		});
 	}
@@ -138,7 +141,6 @@ jQuery(document).ready(function() {
   mbtn_new();
 	mbtn_save();
 
-
 	var track_page = 1;
 	var loading = false;
 	yadb_load_contents(track_page,"topics","","");
@@ -152,7 +154,7 @@ jQuery(document).ready(function() {
 	});
 
 	jQuery(".yadb-overlay").click(function(){
-		jQuery(".yadb-overlay, .topic-viewer").fadeOut();
+		jQuery(".yadb-overlay").fadeOut();
 		jQuery(".topic-viewer").empty();
 	});
 

@@ -1,13 +1,16 @@
 
 <?php
 ?>
-<div class="yadb-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background-color:black;opacity:0.8;display:none">
+<div class="yadb-overlay" style="display:none">
+	<div class="overlay_bg" style="position:fixed;top:0;left:0;width:100%;height:100%;background-color:black;opacity:0.8">
+	</div>
+	<div class="topic-viewer" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left:-35%;	overflow: auto;">
+	</div>
 </div>
-<div class="topic-viewer" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;">
+
+<div class="topic-edit" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%; overflow: auto; display: none;">
 </div>
-<div class="topic-edit" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%;display:none;	overflow: auto;">
-</div>
-<div class="loader-image" style="position:fixed;top:50%;left:50%;width:50px;height:50px;background-color:white;border:2px;text-align:center;margin-top: -25px;margin-left: -25px;">
+<div class="loader-image" style="position:fixed;top:50%;left:50%;width:50px;height:50px;background-color:transparent;border:2px;text-align:center;margin-top: -25px;margin-left: -25px;">
 	<img  height="30" width="30" style="margin-top:15px" src="<?php echo plugins_url(); ?>/wp-yadb/img/ajax-loader.gif">
 </div>
 
