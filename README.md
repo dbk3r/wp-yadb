@@ -9,11 +9,11 @@ a one Side  Discussion Board! (still in developement)
 - dynamic loaded topics.
 
 # ToDo
-- replay Topic (not implemented yet)
+- reply Topic (not implemented yet)
 
 ## INSTALL
 
-- clone repo to wp-content/plugins/ folder
+- clone repo to ../wp-content/plugins/ folder
 - or grab a current [test-version-v0.12] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php)
 - activate plugin (/wp/wp-admin/plugins.php)
 
