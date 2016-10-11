@@ -9,7 +9,8 @@ a one Side  Discussion Board! (still in developement)
 - dynamic loaded topics.
 
 # ToDo
-- reply Topic (not implemented yet)
+- reply Topic
+- edit topic 
 
 ## INSTALL
 
