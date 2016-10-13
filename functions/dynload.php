@@ -21,8 +21,11 @@
         $post_text = str_replace("\\", "", $post_text);
         $Activity = "";
         $output .= '<div class=' . $_POST['uuid'] . ' style="height:100%;"><table><tr style="background:#eeeeee;border-bottom-style:none;">';
-
+        $output .= '<div style="position:fixed;top:9%;;z-index=1"><a title="close topic" style="cursor:pointer" onClick="close_viewer();" ><img src="' . plugins_url(). '/wp-yadb/img/close.png"></a></div>';
         $output .= '<table width=100% border=0 style="border-style:none;">';
+        $output .= '<tr><td colspan=6 style="text-align:center;">';
+        $output .= '';
+        $output .= '</td></tr>';
         $output .= '<tr>';
         $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
         $output .= '<th style="border-style:none;text-align:center">'. base64_decode($topic->topic_text) . '</th>';
@@ -50,7 +53,10 @@
         $output .= '</tr>';
 
       }
-      $output .= '<tr style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;"><a title="reply to main topic" style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a></td></tr>';
+      $output .= '<tr style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;">';
+      $output .= '<a title="reply to main topic" style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a>';
+
+      $output .= '</td></tr>';
 
       $output .= '</table></div>';
       $sql = "UPDATE " . $table_name . " SET views=views+1 where uuid='" . $_POST['uuid'] . "';";

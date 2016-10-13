@@ -2,13 +2,10 @@
 <?php
 ?>
 <div class="yadb-overlay" style="display:none">
-	<div class="overlay_bg" style="position:fixed;top:0;left:0;width:100%;height:100%;background-color:black;opacity:0.8">
+
+	<div class="topic-viewer" style="border-radius: 12px;position:fixed;top:10%;left:50%;margin-left:-35%;width:70%;height:80%;background-color:white;border:2px solid #222222;text-align:left;">			
 	</div>
-	<div class="topic-viewer" style="position:fixed;top:80px;left:50%;width:70%;height:70%;background-color:white;border-radius: 25px;border:4px solid #222222;text-align:left;margin-left:-35%;">
-	</div>
-	<div class="close-viewer" style="position:fixed;top:40px;right:30px;width:26px;height:26px;z-index:10;">
-		 <a style="cursor:pointer"><img  height="30" width="30" style="margin-top:15px" src="<?php echo plugins_url(); ?>/wp-yadb/img/close.png"></a>
-	</div>
+
 </div>
 
 <div class="topic-edit" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%; overflow: auto; display: none;">

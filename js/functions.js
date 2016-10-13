@@ -18,6 +18,11 @@ function ajaxExecute(formData) {
 	}).responseText;
 }
 
+function close_viewer() {
+	jQuery(".yadb-overlay").fadeOut();
+	jQuery(".topic-viewer").empty();
+}
+
 function addSavedTopic(dat) {
 	var newTopic = jQuery('<tr class=wp_yadb_row onclick="loadTopicContent(this,\'' + dat.uuid + '\')"; onmouseover="rowOver(this,\'.5\',\'#dddddd\')"; onmouseout="rowOver(this,\'1\',\'transparent\')";>' +
 					'<td style=text-align:left>' + dat.desc + '<br><small>' + dat.date + '</small></td>' +
@@ -87,6 +92,12 @@ function delete_topic(yadb_id,reply,uuid) {
 
 function loadTopicContent(me,uuid) {
 
+	jQuery(".wpyadb_new_Topic_Header").hide();
+	jQuery(".wpyadb_Editor").slideUp();
+	jQuery(".wpyadb_menu_save").hide();
+	jQuery(".wpyadb_menu_new").show();
+
+	close_viewer();
 	if(jQuery("." + uuid).length) {
 		jQuery("." + uuid).fadeOut('slow').remove();
 	}
@@ -145,6 +156,15 @@ jQuery(document).ready(function() {
 	var loading = false;
 	yadb_load_contents(track_page,"topics","","");
 
+
+	jQuery(document).on('keyup',function(evt) {
+			if (evt.keyCode == 27) {
+				 close_viewer();
+			}
+	});
+
+
+
 	jQuery(window).scroll(function(){
 		if (jQuery(window).scrollTop() + jQuery(window).height() >= jQuery(document).height()){
 			track_page++;
@@ -153,10 +173,6 @@ jQuery(document).ready(function() {
 		}
 	});
 
-	jQuery(".close-viewer").click(function(){
-		jQuery(".yadb-overlay").fadeOut();
-		jQuery(".topic-viewer").empty();
-	});
 
 
 	function yadb_load_contents(track_page,cont,topic,uuid){
