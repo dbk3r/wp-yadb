@@ -1,9 +1,9 @@
 
 <?php
 ?>
-<div class="yadb-overlay" style="display:none">
+<div class="yadb-overlay" style="position: fixed; display:none; top:0px; left:0px; width:100%; height:100%; background-color: rgba(0,0,0,0.7);">
 
-	<div class="topic-viewer" style="border-radius: 12px;position:fixed;top:10%;left:50%;margin-left:-35%;width:70%;height:80%;background-color:white;border:2px solid #222222;text-align:left;">			
+	<div class="topic-viewer" style="border-radius: 12px;position:fixed;top:10%;left:50%;margin-left:-43%;width:86%;height:85%;background-color:white;border:2px solid #222222;text-align:left; z-index:10;">
 	</div>
 
 </div>
