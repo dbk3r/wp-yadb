@@ -21,8 +21,8 @@
         $post_text = str_replace("\\", "", $post_text);
         $Activity = "";
         $output .= '<div class=' . $_POST['uuid'] . ' style="height:100%;"><table><tr style="background:#eeeeee;border-bottom-style:none;">';
-        $output .= '<div onClick="close_viewer();" style="background-color:white;border-top-left-radius: 12px;border-top-right-radius: 12px;border:solid 2px gray; width:86%; height:24px; cursor:pointer;position:fixed;left:50%;margin-left:-43%;top:80px;z-index=1; display: flex; flex-flow: row nowrap; justify-content: space-between;">';
-        $output .= '<div><-</div><div>CLOSE</div><div>-></div>';
+        $output .= '<div onmouseover="rowOver(this,\'.5\',\'#dddddd\');" onmouseout="rowOver(this,\'1\',\'transparent\');" onClick="close_viewer();" style="background-color:white;border-top-left-radius: 12px;border-top-right-radius: 12px;border:solid 2px gray; width:86%; height:24px; cursor:pointer;position:fixed;left:50%;margin-left:-43%;top:10%;z-index=1; display: flex; flex-flow: row nowrap; justify-content: space-between;">';
+        $output .= '<div></div><div>CLOSE</div><div></div>';
         $output .= '</div>';
         $output .= '<table width=100% border=0 style="border-style:none;">';
         $output .= '<tr><td colspan=6 style="text-align:center;">';
@@ -51,7 +51,9 @@
         $output .= '</th>';
         $output .= '</tr>';
         $output .= '<tr style="background:#ffffff">';
-        $output .= '<td colspan=3 style="text-align:left;">' . convert_smilies( $post_text ) . '</td>';
+        $output .= '<td  colspan=3 style="text-align:left;">';
+        $output .= '<div id="postTextContainer">' . convert_smilies( $post_text ) . '</div>';      
+        $output .= '</td>';
         $output .= '</tr>';
 
       }

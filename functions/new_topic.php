@@ -40,7 +40,7 @@ function wpyadb_new_topic()
 			<div class="wpyadb_Editor" style="display:none">
 				<div class="wrap" id="fr_editor">
 					<?php
-					  wp_editor($content, "wpyadb_new_edit",$settings);
+						wp_editor($content, "wpyadb_new_edit",$settings);
 
 						 ?>
 				</div>
@@ -50,5 +50,8 @@ function wpyadb_new_topic()
 
 <?php
 }
+
+
+
 
 ?>

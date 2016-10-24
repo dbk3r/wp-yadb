@@ -74,7 +74,12 @@ function pin_topic(uuid,yadb_id,value) {
 }
 
 function edit_topic(yadb_id) {
-	alert(yadb_id);
+
+	var content = jQuery("#postTextContainer").html();
+	jQuery("#postTextContainer").load(WPURLS.yadburl + "/functions/edit-topic.php?id=" + yadb_id);
+	
+
+
 }
 
 function delete_topic(yadb_id,reply,uuid) {
