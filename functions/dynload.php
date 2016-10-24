@@ -21,7 +21,9 @@
         $post_text = str_replace("\\", "", $post_text);
         $Activity = "";
         $output .= '<div class=' . $_POST['uuid'] . ' style="height:100%;"><table><tr style="background:#eeeeee;border-bottom-style:none;">';
-        $output .= '<div onClick="close_viewer();" style="vertical-align: middle;text-align:center;color:black;background-color:white;border-radius: 12px;border:solid 2px black;width:90px;height:24px;cursor:pointer;position:fixed;margin-left:25px;top:9%;z-index=1">CLOSE</div>';
+        $output .= '<div onClick="close_viewer();" style="background-color:white;border-top-left-radius: 12px;border-top-right-radius: 12px;border:solid 2px gray; width:86%; height:24px; cursor:pointer;position:fixed;left:50%;margin-left:-43%;top:80px;z-index=1; display: flex; flex-flow: row nowrap; justify-content: space-between;">';
+        $output .= '<div><-</div><div>CLOSE</div><div>-></div>';
+        $output .= '</div>';
         $output .= '<table width=100% border=0 style="border-style:none;">';
         $output .= '<tr><td colspan=6 style="text-align:center;">';
         $output .= '';
