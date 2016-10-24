@@ -10,7 +10,7 @@ a one Side  Discussion Board! (still in developement)
 
 # ToDo
 - reply Topic
-- edit topic 
+- edit topic - save
 
 ## INSTALL
 
