@@ -75,12 +75,12 @@ function pin_topic(uuid,yadb_id,value) {
 
 function edit_topic(yadb_id) {
 
-	var content = jQuery("#postTextContainer").html();
-	jQuery("#postTextContainer").load(WPURLS.yadburl + "/functions/edit-topic.php?id=" + yadb_id);
-	
 
+	jQuery("#postTextContainer").load(WPURLS.yadburl + '/functions/load_editor.php?nn=yadb_edit&id='+ yadb_id);
 
 }
+
+
 
 function delete_topic(yadb_id,reply,uuid) {
 	if (confirm('do you realy want to delete this topic?')) {
@@ -219,9 +219,11 @@ jQuery(document).ready(function() {
 		jQuery(".wpyadb_menu_save").show();
 	  jQuery(".wpyadb_menu_new").hide();
 	  jQuery(".wpyadb_new_Topic_Header").slideDown();
-	  tinymce.get('wpyadb_new_edit').setContent('');
+		jQuery("#fr_editor").load(WPURLS.yadburl + '/functions/load_editor.php?nn=wpyadb_new_edit');
+	  //tinymce.get('wpyadb_new_edit').setContent('');
 		jQuery('#wpyadb_topic_desc').val('');
 	  jQuery(".wpyadb_Editor").slideDown();
+
 	  jQuery('#wpyadb_topic_desc').focus();
 	});
 

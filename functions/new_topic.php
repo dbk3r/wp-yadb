@@ -41,7 +41,7 @@ function wpyadb_new_topic()
 				<div class="wrap" id="fr_editor">
 					<?php
 						wp_editor($content, "wpyadb_new_edit",$settings);
-
+						_WP_Editors::editor_js();
 						 ?>
 				</div>
 			</div>
