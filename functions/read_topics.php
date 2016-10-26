@@ -39,7 +39,7 @@ function wpyadb_header()
 		<tr  >
 			<th style=text-align:left>Topic</th><th>Category</th><th>Author</th><th>Replies</th><th>Views</th><th>Activity</th>
 		</tr>
-<script src="<?php echo plugins_url(); ?>/wp-yadb/js/jquery.nicescroll.min.js"></script>
+
 <?php
 }
 

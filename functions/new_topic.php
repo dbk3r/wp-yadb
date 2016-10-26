@@ -39,10 +39,7 @@ function wpyadb_new_topic()
 		<td colspan="6">
 			<div class="wpyadb_Editor" style="display:none">
 				<div class="wrap" id="fr_editor">
-					<?php
-						wp_editor($content, "wpyadb_new_edit",$settings);
-						_WP_Editors::editor_js();
-						 ?>
+					<textarea class="wrap" id="wp-yadb_new-topic" name="wp-yadb_new-topic"></textarea>
 				</div>
 			</div>
 		</td>

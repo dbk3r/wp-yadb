@@ -18,7 +18,5 @@ if(!empty($results)) {
 else {
   #$content = "";
 }
-wp_editor($content, $nn, $settings);
-_WP_Editors::editor_js();
-
+print "<textarea id='wp-yadb_edit-topic' name=''wp-yadb_edit-topic'>$content</textarea>";
 ?>

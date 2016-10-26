@@ -75,9 +75,20 @@ function pin_topic(uuid,yadb_id,value) {
 
 function edit_topic(yadb_id) {
 
-
-	jQuery("#postTextContainer").load(WPURLS.yadburl + '/functions/load_editor.php?nn=yadb_edit&id='+ yadb_id);
-
+	jQuery("#postTextContainer").load(WPURLS.yadburl + '/functions/load_editor.php?nn=yadb_edit&id='+ yadb_id, function() {
+		tinymce.init({
+			selector: 'textarea#wp-yadb_edit-topic',
+			menubar:	false,
+			plugins: [
+				'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    		'searchreplace wordcount visualblocks visualchars code fullscreen',
+    		'insertdatetime media nonbreaking save table contextmenu directionality',
+    		'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+    	],
+    	toolbar: "insertfile undo redo | bold italic | forecolor backcolor fontsizeselect | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample",
+			fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt'
+		});
+	});
 }
 
 
@@ -161,7 +172,6 @@ jQuery(document).ready(function() {
 	var loading = false;
 	yadb_load_contents(track_page,"topics","","");
 
-
 	jQuery(document).on('keyup',function(evt) {
 			if (evt.keyCode == 27) {
 				 close_viewer();
@@ -219,22 +229,32 @@ jQuery(document).ready(function() {
 		jQuery(".wpyadb_menu_save").show();
 	  jQuery(".wpyadb_menu_new").hide();
 	  jQuery(".wpyadb_new_Topic_Header").slideDown();
-		jQuery("#fr_editor").load(WPURLS.yadburl + '/functions/load_editor.php?nn=wpyadb_new_edit');
-	  //tinymce.get('wpyadb_new_edit').setContent('');
 		jQuery('#wpyadb_topic_desc').val('');
-	  jQuery(".wpyadb_Editor").slideDown();
+		tinymce.init({
+			selector:		'textarea#wp-yadb_new-topic',
+			menubar:		false,
+			plugins: [
+				'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    		'searchreplace wordcount visualblocks visualchars code fullscreen',
+    		'insertdatetime media nonbreaking save table contextmenu directionality',
+    		'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+    	],
+    	toolbar: "insertfile undo redo | bold italic | forecolor backcolor fontsizeselect | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample",
+			fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt'
 
+		});
+	  jQuery(".wpyadb_Editor").slideDown();
 	  jQuery('#wpyadb_topic_desc').focus();
 	});
 
 	jQuery(".btn_wpyadb-save-topic").click(function() {
-		var editor = tinyMCE.get('wpyadb_new_edit');
+		var editor = tinymce.get('wp-yadb_new-topic');
 		if (editor) {
 		    // Ok, the active tab is Visual
 		    content = editor.getContent();
 		} else {
 		    // The active tab is HTML, so just query the textarea
-		    content = jQuery('#wpyadb_new_edit').val();
+		    content = jQuery('#wp-yadb_new-topic').val();
 		}
 
 		if (jQuery('#wpyadb_topic_desc').val() && content)
