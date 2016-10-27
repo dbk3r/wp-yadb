@@ -50,7 +50,7 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 		var retVal = ajaxExecute(formData);
 		var data =  jQuery.parseJSON(retVal);
 
-		alert(data.status);
+		//alert(data.status);
 	}
 
 }
@@ -96,12 +96,11 @@ function cancel_edit_topic(yadb_id) {
 
 function edit_topic(yadb_id) {
 
-	//jQuery("#postTextContainer").load(WPURLS.yadburl + '/functions/load_editor.php?nn=yadb_edit&id='+ yadb_id, function() {
 		jQuery("#postTextContainer").html("<textarea id='wp-yadb_edit-topic' name='wp-yadb_edit-topic'>" + jQuery("#postTextContainer").html() +"</textarea>");
 		jQuery("#read_btn_set").hide();
 		jQuery("#edit_btn_set").show();
 
-		tinymce.remove();
+		tinymce.remove("textarea#wp-yadb_edit-topic");
 		tinymce.init({
 			selector: 'textarea#wp-yadb_edit-topic',
 
@@ -211,7 +210,19 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	tinymce.init({
+		selector:		'textarea#wp-yadb_new-topic',
 
+		menubar:		false,
+		plugins: [
+			'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+			'searchreplace wordcount visualblocks visualchars code fullscreen',
+			'insertdatetime media nonbreaking save table contextmenu directionality',
+			'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+		],
+		toolbar: "insertfile undo redo | bold italic | forecolor backcolor | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample"
+
+	});
 
 	function yadb_load_contents(track_page,cont,topic,uuid){
     if(loading == false){
@@ -253,19 +264,9 @@ jQuery(document).ready(function() {
 	  jQuery(".wpyadb_menu_new").hide();
 	  jQuery(".wpyadb_new_Topic_Header").slideDown();
 		jQuery('#wpyadb_topic_desc').val('');
-		tinymce.init({
-			selector:		'textarea#wp-yadb_new-topic',
+		var editor = tinymce.get('wp-yadb_new-topic');
+		editor.setContent("");
 
-			menubar:		false,
-			plugins: [
-				'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-    		'searchreplace wordcount visualblocks visualchars code fullscreen',
-    		'insertdatetime media nonbreaking save table contextmenu directionality',
-    		'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
-    	],
-    	toolbar: "insertfile undo redo | bold italic | forecolor backcolor | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample"
-
-		});
 	  jQuery(".wpyadb_Editor").slideDown();
 	  jQuery('#wpyadb_topic_desc').focus();
 	});
