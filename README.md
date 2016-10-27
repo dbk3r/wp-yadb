@@ -10,7 +10,7 @@ An easy one-Site Discussion Board! (still in developement)
 Features:
 
 - Pin Topics to the Top of the List
-- [TinyMCE-4 Editor]
+- <a href="https://www.tinymce.com/" target="_blank">TinyMCE-4 Editor</a>
 - Realtime Full-Text Search
 
 
@@ -35,4 +35,3 @@ Features:
 
 [Live-Demo]:http://dbk3r.spdns.de/wp/index.php/forum/
 [test-version-v0.13]:http://dbk3r.spdns.de/dl/wp-yadb.zip
-[TinyMCE-4 Editor]:https://www.tinymce.com/
