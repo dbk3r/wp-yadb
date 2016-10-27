@@ -55,7 +55,7 @@ function wpyadb_footer()
 
 ?>
 		<tr>
-			<td colspan=6 style="text-align:center"> (c) by Denis Becker 2016</td>
+			<td colspan=6 style="text-align:center"> powered by Denis Becker 2016</td>
 		</tr>
 	</table>
 <?php

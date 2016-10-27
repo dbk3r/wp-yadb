@@ -77,12 +77,18 @@ function pin_topic(uuid,yadb_id,value) {
 
 }
 
+function reply_topic(yadb_uuid, yadb_id) {
+	alert (yadb_uuid + ": " + yadb_id);
+}
+
+
 function save_topic(yadb_id) {
 	var editor = tinymce.get('wp-yadb_edit-topic');
 	content = editor.getContent({format : 'raw'});
 	wpyadb_save_topic(yadb_id ,"",jQuery('#topic_category').text(), "", content);
 	jQuery("#read_btn_set").show();
 	jQuery("#edit_btn_set").hide();
+	jQuery("#btn_reply").show();
 	jQuery("#postTextContainer").html(content);
 
 }
@@ -99,11 +105,12 @@ function edit_topic(yadb_id) {
 		jQuery("#postTextContainer").html("<textarea id='wp-yadb_edit-topic' name='wp-yadb_edit-topic'>" + jQuery("#postTextContainer").html() +"</textarea>");
 		jQuery("#read_btn_set").hide();
 		jQuery("#edit_btn_set").show();
+		jQuery("#btn_reply").hide();
 
 		tinymce.remove("textarea#wp-yadb_edit-topic");
 		tinymce.init({
 			selector: 'textarea#wp-yadb_edit-topic',
-
+			height:	'200px',
 			menubar:	false,
 			plugins: [
 				'advlist autolink lists link image charmap print preview hr anchor pagebreak',

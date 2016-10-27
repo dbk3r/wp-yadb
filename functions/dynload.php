@@ -30,7 +30,7 @@
         $output .= '</td></tr>';
         $output .= '<tr>';
         $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
-        $output .= '<th style="border-style:none;text-align:center">'. '<p style="border:1px solid lightgrey;" id="topic_category">'. $topic->categorie .'</p>' . base64_decode($topic->topic_text) . '</th>';
+        $output .= '<th style="border-style:none;text-align:center">'. '<p style="border:1px solid lightgrey;" id="topic_category">Category: '. $topic->categorie .'</p>' . base64_decode($topic->topic_text) . '</th>';
         $output .= '<th valign=top align=right width=100 style="border-left-style:none;"><small>'. $topic->time .'</small><br><br>';
 
         $output .= '<div id="edit_btn_set" style="display:none">';
@@ -63,8 +63,8 @@
         $output .= '</tr>';
 
       }
-      $output .= '<tr style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;">';
-      $output .= '<a title="reply to main topic" style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a>';
+      $output .= '<tr id="'. $topic->id .'" style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;">';
+      $output .= '<div id="btn_reply"><a onclick="reply_topic(\'' . $topic->uuid . '\',\'' . $topic->id . '\');" title="reply to main topic" style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a></div>';
 
       $output .= '</td></tr>';
 
