@@ -1,7 +1,7 @@
 # Wordpress Plugin : Yust Another Discussion Board
 
 
-A one Side  Discussion Board! (still in developement)
+A easy one-Site Discussion Board! (still in developement)
 
 
 - Ajax dynamic Content loading/saving.
