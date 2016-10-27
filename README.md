@@ -10,12 +10,12 @@ A one Side  Discussion Board! (still in developement)
 Features:
 
 - Pin Topics to the Top of the List
-- 
 
 
 
-# ToDo for the first Relase Canditat
+# ToDo for the first Relase Canditate
 - reply Topic
+
 
 ## INSTALL
 
