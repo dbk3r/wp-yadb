@@ -35,4 +35,4 @@ Features:
 
 [Live-Demo]:http://dbk3r.spdns.de/wp/index.php/forum/
 [test-version-v0.13]:http://dbk3r.spdns.de/dl/wp-yadb.zip
-[TinyMCE-4 Editor](https://www.tinymce.com/){:target="_blank"}
+[TinyMCE-4 Editor](https://www.tinymce.com/) :target="_blank"
