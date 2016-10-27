@@ -10,11 +10,14 @@ An easy one-Site Discussion Board! (still in developement)
 Features:
 
 - Pin Topics to the Top of the List
+- TinyMCE-4 Editor
+- Realtime Full-Text Search
 
 
 
 ### ToDo for the first Relase Canditate
 - reply Topic Integration
+- search Panel
 
 
 ## INSTALL
