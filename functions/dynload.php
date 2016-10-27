@@ -30,14 +30,20 @@
         $output .= '</td></tr>';
         $output .= '<tr>';
         $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
-        $output .= '<th style="border-style:none;text-align:center">'. base64_decode($topic->topic_text) . '</th>';
+        $output .= '<th style="border-style:none;text-align:center">'. '<p style="border:1px solid lightgrey;" id="topic_category">'. $topic->categorie .'</p>' . base64_decode($topic->topic_text) . '</th>';
         $output .= '<th valign=top align=right width=100 style="border-left-style:none;"><small>'. $topic->time .'</small><br><br>';
 
+        $output .= '<div id="edit_btn_set" style="display:none">';
+        $output .= '<a onclick="save_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="save_button" title="save topic" src="'.$yadb_url.'/img/save.png"></a> ';
+        $output .= '<a onclick="cancel_edit_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="cancel_button" title="cancel" src="'.$yadb_url.'/img/cancel.png"></a>';
+        $output .= '</div>';
+
+        $output .= '<div id="read_btn_set">';
         if ($current_user->user_login == $topic->username || current_user_can('editor') || current_user_can('administrator')) {
-          $output .= '<a onclick="edit_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img title="edit topic" src="'.$yadb_url.'/img/edit-16.png"></a> ';
+          $output .= '<a onclick="edit_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="edit_button" title="edit topic" src="'.$yadb_url.'/img/edit-16.png"></a> ';
         }
         if (current_user_can('administrator')) {
-          $output .= '<a onclick="delete_topic(\'' . $topic->id . '\',\'' . $topic->reply . '\',\'' . $topic->uuid . '\');" style="cursor:pointer"><img title="delete topic" src="'.$yadb_url.'/img/trash-16.png"></a> ';
+          $output .= '<a onclick="delete_topic(\'' . $topic->id . '\',\'' . $topic->reply . '\',\'' . $topic->uuid . '\');" style="cursor:pointer"><img id="delete_button" title="delete topic" src="'.$yadb_url.'/img/trash-16.png"></a> ';
           if($topic->reply == "0") # pin only main Topic
           {
             if($topic->pinned == "1") {
@@ -47,12 +53,12 @@
             }
           }
         }
-
+        $output .= '</div>';
         $output .= '</th>';
         $output .= '</tr>';
         $output .= '<tr style="background:#ffffff">';
         $output .= '<td  colspan=3 style="text-align:left;">';
-        $output .= '<div id="postTextContainer">' . convert_smilies( $post_text ) . '</div>';      
+        $output .= '<div id="postTextContainer">' . convert_smilies( $post_text ) . '</div>';
         $output .= '</td>';
         $output .= '</tr>';
 

@@ -4,7 +4,7 @@
 Plugin Name: Yust Another Discussion Board (YADB)
 Plugin URI: https://github.com/dbk3r/wp-yadb
 Description: Wordpress Discussion Board
-Version: 0.12
+Version: 0.13
 Author: Denis Becker
 */
 
@@ -22,7 +22,7 @@ function insert_wpyadb() {
 	wp_register_script('mylib', "/wp-content/plugins/wp-yadb/js/functions.js");
 	wp_register_script('nicescroll', "/wp-content/plugins/wp-yadb/js/jquery.nicescroll.min.js");
 	wp_register_script('tinymce_js', $yadb_url . "/tinymce/tinymce.min.js");
-	wp_localize_script('mylib', 'WPURLS', array('yadburl' => plugins_url() . "/wp-yadb"));
+	wp_localize_script('mylib', 'WPURLS', array('yadburl' => plugins_url() . "/wp-yadb", 'baseurl' => get_site_url() . '/'));
 	wp_enqueue_script( 'mylib' );
 	wp_enqueue_script( 'tinymce_js' );
 	wp_enqueue_script( 'nicescroll' );

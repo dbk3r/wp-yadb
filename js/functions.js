@@ -46,7 +46,11 @@ function wpyadb_save_topic(wpyadb_id, wpyadb_user, wpyadb_category, wpyadb_desc,
 		addSavedTopic(data);
 	} else {
 		// update DB-Entry
-		alert("user:" + wpyadb_user + "\ncategory: " + wpyadb_category + "\ndesc: " + wpyadb_desc + "\ncontent :\n\n" + wpyadb_content);
+		var formData = {action:"updateTopic",yid:wpyadb_id,category:wpyadb_category,content:wpyadb_content};
+		var retVal = ajaxExecute(formData);
+		var data =  jQuery.parseJSON(retVal);
+
+		alert(data.status);
 	}
 
 }
@@ -73,11 +77,34 @@ function pin_topic(uuid,yadb_id,value) {
 
 }
 
+function save_topic(yadb_id) {
+	var editor = tinymce.get('wp-yadb_edit-topic');
+	content = editor.getContent({format : 'raw'});
+	wpyadb_save_topic(yadb_id ,"",jQuery('#topic_category').text(), "", content);
+	jQuery("#read_btn_set").show();
+	jQuery("#edit_btn_set").hide();
+	jQuery("#postTextContainer").html(content);
+
+}
+
+function cancel_edit_topic(yadb_id) {
+	jQuery("#read_btn_set").show();
+	jQuery("#edit_btn_set").hide();
+	jQuery("#postTextContainer").html(jQuery("#wp-yadb_edit-topic").val());
+
+}
+
 function edit_topic(yadb_id) {
 
-	jQuery("#postTextContainer").load(WPURLS.yadburl + '/functions/load_editor.php?nn=yadb_edit&id='+ yadb_id, function() {
+	//jQuery("#postTextContainer").load(WPURLS.yadburl + '/functions/load_editor.php?nn=yadb_edit&id='+ yadb_id, function() {
+		jQuery("#postTextContainer").html("<textarea id='wp-yadb_edit-topic' name='wp-yadb_edit-topic'>" + jQuery("#postTextContainer").html() +"</textarea>");
+		jQuery("#read_btn_set").hide();
+		jQuery("#edit_btn_set").show();
+
+		tinymce.remove();
 		tinymce.init({
 			selector: 'textarea#wp-yadb_edit-topic',
+
 			menubar:	false,
 			plugins: [
 				'advlist autolink lists link image charmap print preview hr anchor pagebreak',
@@ -85,10 +112,9 @@ function edit_topic(yadb_id) {
     		'insertdatetime media nonbreaking save table contextmenu directionality',
     		'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
     	],
-    	toolbar: "insertfile undo redo | bold italic | forecolor backcolor fontsizeselect | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample",
-			fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt'
+    	toolbar: "insertfile undo redo | bold italic | forecolor backcolor | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample"
 		});
-	});
+
 }
 
 
@@ -138,9 +164,6 @@ function loadTopicContent(me,uuid) {
 								jQuery(".topic-viewer").append(data).niceScroll();
 								rowOver(me,'1','transparent');
 								jQuery(".yadb-overlay").fadeIn();
-
-
-
 			}
 		});
 	}
@@ -232,6 +255,7 @@ jQuery(document).ready(function() {
 		jQuery('#wpyadb_topic_desc').val('');
 		tinymce.init({
 			selector:		'textarea#wp-yadb_new-topic',
+
 			menubar:		false,
 			plugins: [
 				'advlist autolink lists link image charmap print preview hr anchor pagebreak',
@@ -239,8 +263,7 @@ jQuery(document).ready(function() {
     		'insertdatetime media nonbreaking save table contextmenu directionality',
     		'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
     	],
-    	toolbar: "insertfile undo redo | bold italic | forecolor backcolor fontsizeselect | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample",
-			fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt'
+    	toolbar: "insertfile undo redo | bold italic | forecolor backcolor | emoticons | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link image media | codesample"
 
 		});
 	  jQuery(".wpyadb_Editor").slideDown();
@@ -261,7 +284,6 @@ jQuery(document).ready(function() {
 		{
 			jQuery(".wpyadb_menu_save").hide();
 	    jQuery(".wpyadb_menu_new").show();
-
 
 			wpyadb_save_topic(jQuery('#wpyadb_uuid').val() ,jQuery('#wpyadb_username').val(),jQuery('#wpyadb_category :selected').text(), jQuery('#wpyadb_topic_desc').val(), content);
 

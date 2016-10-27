@@ -42,13 +42,13 @@
 		}
 		$return_value = "{\"sql\":\"" . $sql . "\"}";
 	}
-	else if ($_POST['action'] == "saveTopic")
+	else if ($_POST['action'] == "updateTopic")
 	{
 		$yadb_id = $_POST['yid'];
 		$sql = "UPDATE $table_name set post_text='$post_text' where id=$yadb_id;";
 		$return_value = "{\"status\":\"saved succesfully\"}";
 	}
-	
+
 
 	if ($sql != "") { $wpdb->query($sql); }
 	echo $return_value;
