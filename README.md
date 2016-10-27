@@ -4,7 +4,7 @@
 An easy one-Site Discussion Board! (still in developement)
 
 
-- Ajax dynamic Content loading/saving.
+- Ajax dynamic Content loading/saving, without reloading hole Page.
 - User & Category Configuration in default WP Admin-Panel. (wp-admin/users.php), (wp-admin/edit-tags.php?taxonomy=category)
 
 Features:
