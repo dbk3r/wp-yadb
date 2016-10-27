@@ -1,14 +1,20 @@
 # Wordpress Plugin : Yust Another Discussion Board
 
 
-a one Side  Discussion Board! (still in developement)
+A one Side  Discussion Board! (still in developement)
 
-- fully Wordpress Integration.
-- Ajax Content loading/saving.
-- User & Category Management done in Wordpress.
-- dynamic loaded topics.
 
-# ToDo
+- Ajax dynamic Content loading/saving.
+- User & Category Configuration in default WP Admin-Panel. (wp-admin/users.php), (wp-admin/edit-tags.php?taxonomy=category)
+
+Features:
+
+- Pin Topics to the Top of the List
+- 
+
+
+
+# ToDo for the first Relase Canditat
 - reply Topic
 
 ## INSTALL
