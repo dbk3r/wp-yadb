@@ -20,7 +20,7 @@ Features:
 ## INSTALL
 
 - clone repo to ../wp-content/plugins/ folder
-- or grab a current [test-version-v0.13] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php)
+- or grab a current [test-version-v0.13] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php), or unzip to /wp-content/plugins/ folder
 - activate plugin (/wp/wp-admin/plugins.php)
 
 
