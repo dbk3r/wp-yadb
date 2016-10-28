@@ -1,12 +1,9 @@
 
 <?php
 ?>
-
-<div class="yadb-overlay" style="position: fixed; display:none; top:0px; left:0px; width:100%; height:100%; background-color: rgba(0,0,0,0.7);">
-
-	<div class="topic-viewer" style="border-radius: 12px;position:fixed;top:10%;left:50%;margin-left:-43%;width:86%;height:85%;background-color:white;border:2px solid grey;text-align:left; overflow-y:auto; z-index:10;">
-	</div>
+<div class="topic-viewer wrap" >
 </div>
+
 <div class="topic-edit" style="position:fixed;top:60px;left:50%;width:70%;height:70%;background-color:white;border:2px;text-align:leftr;margin-left: -35%; overflow: auto; display: none;">
 </div>
 <div class="loader-image" style="position:fixed;top:50%;left:50%;width:50px;height:50px;background-color:transparent;border:2px;text-align:center;margin-top: -25px;margin-left: -25px;">

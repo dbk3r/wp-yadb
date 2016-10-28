@@ -1,0 +1,23 @@
+.yadb-noborder {
+border:none;
+vertical-align: top;
+}
+
+.yadb-noborder-center {
+  border:none;
+  vertical-align: middle;
+  align: center;
+}
+.yadb-comment-button {
+  border: solid 1px #444;
+  border-radius: 4px;
+  float: right;
+  width:100px;
+  background-color:#eee;
+  text-align:center;
+  vertical-align: middle;
+}
+.yadb-comment-button:hover {
+  background-color:#bbb;
+  cursor:pointer;
+}

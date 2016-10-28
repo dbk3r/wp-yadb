@@ -2,6 +2,7 @@
 
   require_once('../../../../wp-blog-header.php' );
   global $wpdb;
+  global $current_user;
 
   $table_name = $wpdb->prefix . 'wpyadb';
   $yadb_url = plugins_url() . "/wp-yadb";
@@ -15,23 +16,24 @@
 
     $output = '';
     if(!empty($topics)) {
+      $output .= '<div class=' . $_POST['uuid'] . ' style="height:100%;"><table><tr style="background:#eeeeee;border-bottom-style:none;">';
+      $output .= '<div onmouseover="rowOver(this,\'.5\',\'#dddddd\');" onmouseout="rowOver(this,\'1\',\'transparent\');" onClick="close_viewer();" style="background-color:white;border:solid 2px gray; width:100%; height:24px; cursor:pointer; display: flex; flex-flow: row nowrap; justify-content: space-between;">';
+      $output .= '<div></div><div>CLOSE</div><div></div>';
+      $output .= '</div>';
+      $output .= '<table width=100% border=0 style="border-style:none;">';
+
       foreach($topics as $topic) {
         $user = get_userdatabylogin($topic->username);
         $post_text = base64_decode($topic->post_text);
         $post_text = str_replace("\\", "", $post_text);
-        $Activity = "";
-        $output .= '<div class=' . $_POST['uuid'] . ' style="height:100%;"><table><tr style="background:#eeeeee;border-bottom-style:none;">';
-        $output .= '<div onmouseover="rowOver(this,\'.5\',\'#dddddd\');" onmouseout="rowOver(this,\'1\',\'transparent\');" onClick="close_viewer();" style="background-color:white;border-top-left-radius: 12px;border-top-right-radius: 12px;border:solid 2px gray; width:86%; height:24px; cursor:pointer;position:fixed;left:50%;margin-left:-43%;top:10%;z-index=1; display: flex; flex-flow: row nowrap; justify-content: space-between;">';
-        $output .= '<div></div><div>CLOSE</div><div></div>';
-        $output .= '</div>';
-        $output .= '<table width=100% border=0 style="border-style:none;">';
-        $output .= '<tr><td colspan=6 style="text-align:center;">';
-        $output .= '';
+
+        $output .= '<tr><td colspan=3 class="yadb-noborder">';
+        $output .= '<p style="border:1px solid lightgrey;" id="topic_category">Category: '. $topic->categorie .'</p><h2>' . base64_decode($topic->topic_text) .'</h2>';
         $output .= '</td></tr>';
         $output .= '<tr>';
-        $output .= '<th width=50 valign=top align=center style="border-right-style:none;">' . get_avatar($user->ID,50,"",$topic->username). '<br><small>'. $topic->username .'</small></th>';
-        $output .= '<th style="border-style:none;text-align:center">'. '<p style="border:1px solid lightgrey;" id="topic_category">Category: '. $topic->categorie .'</p>' . base64_decode($topic->topic_text) . '</th>';
-        $output .= '<th valign=top align=right width=100 style="border-left-style:none;"><small>'. $topic->time .'</small><br><br>';
+        $output .= '<td width=50 valign=top align=center class="yadb-noborder">' . get_avatar($user->ID,50,"",$topic->username). '</td>';
+        $output .= '<th class="yadb-noborder-center">'. $topic->username . ' commented on ' . $topic->time .'</th>';
+        $output .= '<th width=100 class="yadb-noborder-center">';
 
         $output .= '<div id="edit_btn_set" style="display:none">';
         $output .= '<a onclick="save_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="save_button" title="save topic" src="'.$yadb_url.'/img/save.png"></a> ';
@@ -57,15 +59,18 @@
         $output .= '</th>';
         $output .= '</tr>';
         $output .= '<tr style="background:#ffffff">';
-        $output .= '<td  colspan=3 style="text-align:left;">';
+        $output .= '<td class="yadb-noborder"></td><td  colspan=2 style="text-align:left;">';
         $output .= '<div id="postTextContainer">' . convert_smilies( $post_text ) . '</div>';
         $output .= '</td>';
         $output .= '</tr>';
 
       }
-      $output .= '<tr id="'. $topic->id .'" style="background:#eeeeee;border-top-style:none;"><td colspan=6 style="text-align:right;">';
-      $output .= '<div id="btn_reply"><a onclick="reply_topic(\'' . $topic->uuid . '\',\'' . $topic->id . '\');" title="reply to main topic" style="cursor:pointer" class="btn_wpyadb-reply-topic" >REPLY</a></div>';
+      $output .= '<tr id="'. $topic->id .'" style="border-top-style:none;"><td class="yadb-noborder">'. get_avatar($user->ID,50,"",$current_user->login).'</td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
+      $output .= '<div><textarea id="comment-topic-text" name="comment-topic"></textarea></div>';
+      $output .= '</td></tr>';
 
+      $output .= '<tr id="'. $topic->id .'-footer" style="border-top-style:none;"><td class="yadb-noborder"></td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
+      $output .= '<div title="comment this Topic" id="btn_comment" class="yadb-comment-button" onclick="comment_topic(\'' . $topic->uuid . '\',\'' . $topic->id . '\');">COMMENT</div>';
       $output .= '</td></tr>';
 
       $output .= '</table></div>';

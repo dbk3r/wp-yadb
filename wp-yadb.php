@@ -20,12 +20,13 @@ function insert_wpyadb() {
 	require_once('functions/read_topics.php');
 
 	wp_register_script('mylib', "/wp-content/plugins/wp-yadb/js/functions.js");
-	wp_register_script('nicescroll', "/wp-content/plugins/wp-yadb/js/jquery.nicescroll.min.js");
 	wp_register_script('tinymce_js', $yadb_url . "/tinymce/tinymce.min.js");
-	wp_localize_script('mylib', 'WPURLS', array('yadburl' => plugins_url() . "/wp-yadb", 'baseurl' => get_site_url() . '/'));
+	wp_localize_script('mylib', 'WPURLS', array('yadburl' => plugins_url() . "/wp-yadb", 'current_user' => $current_user->user_login ));
 	wp_enqueue_script( 'mylib' );
 	wp_enqueue_script( 'tinymce_js' );
-	wp_enqueue_script( 'nicescroll' );
+
+	wp_register_style( 'yadb-style', $yadb_url .'/css/yadb.css' );
+	wp_enqueue_style( 'yadb-style' );
 
 ?>
 	<div class='wrap'>

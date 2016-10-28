@@ -2,7 +2,6 @@
 
 function wpyadb_new_topic()
 {
-
 	$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'quicktags' => false, 'automatic_uploads' => true );
 	#$settings = array('editor_class' => 'wpyadb_new_edit', 'media_buttons' => false , 'tinymce' => true, 'paste_data_images' => true );
 	global $current_user;
@@ -47,8 +46,5 @@ function wpyadb_new_topic()
 
 <?php
 }
-
-
-
 
 ?>
