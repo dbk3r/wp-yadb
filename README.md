@@ -23,7 +23,7 @@ Features:
 ## INSTALL
 
 - clone repo to ../wp-content/plugins/ folder
-- or grab a current [test-version-v0.13] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php), or unzip to /wp-content/plugins/ folder
+- or grab a current [test-version-v0.1.3] and install through your WP Admin Plugin-Side (/wp/wp-admin/plugins.php), or unzip to /wp-content/plugins/ folder
 - activate plugin (/wp/wp-admin/plugins.php)
 
 - use shortcode [wpyadb] to insert your Discussion Board  :-)
@@ -33,5 +33,5 @@ Features:
 [Live-Demo]
 
 [Live-Demo]:http://dbk3r.spdns.de/wp/index.php/forum/
-[test-version-v0.13]:http://dbk3r.spdns.de/dl/wp-yadb.zip
+[test-version-v0.1.3]:http://dbk3r.spdns.de/dl/wp-yadb.zip
 [TinyMCE-4 Editor]:https://www.tinymce.com/
