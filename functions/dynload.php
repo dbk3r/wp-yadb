@@ -21,23 +21,26 @@
       $output .= '<div></div><div>CLOSE</div><div></div>';
       $output .= '</div>';
       $output .= '<table width=100% border=0 style="border-style:none;">';
-
+      $cc = 0;
       foreach($topics as $topic) {
+        $cc++;
         $user = get_userdatabylogin($topic->username);
-        $cur_user = get_userdatabylogin($current_user->login);
+        $cur_user = get_userdatabylogin($current_user->user_login);
         $post_text = base64_decode($topic->post_text);
         $post_text = str_replace("\\", "", $post_text);
-
-        $output .= '<tr><td colspan=3 class="yadb-noborder">';
-        $output .= '<p style="border:1px solid lightgrey;" id="topic_category">Category: '. $topic->categorie .'</p><h2>' . base64_decode($topic->topic_text) .'</h2>';
-        $output .= '</td></tr>';
-        $output .= '<tr>';
+        if($cc == 1)
+        {
+          $output .= '<tr><td colspan=3 class="yadb-noborder">';
+          $output .= '<p style="border:1px solid lightgrey;" id="topic_category">Category: '. $topic->categorie .'</p><h2>' . base64_decode($topic->topic_text) .'</h2>';
+          $output .= '</td></tr>';
+        }
+        $output .= '<tr id="'. $topic->id .'">';
         $output .= '<td width=50 valign=top align=center class="yadb-noborder">' . get_avatar($user->ID,50,"",$topic->username). '</td>';
         $output .= '<th class="yadb-noborder-center">'. $topic->username . ' commented on ' . $topic->time .'</th>';
         $output .= '<th width=100 class="yadb-noborder-center">';
 
         $output .= '<div id="edit_btn_set" style="display:none">';
-        $output .= '<a onclick="save_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="save_button" title="save topic" src="'.$yadb_url.'/img/save.png"></a> ';
+        $output .= '<a onclick="save_topic(\''. $topic->uuid .'\',\'' . $topic->id . '\');" style="cursor:pointer"><img id="save_button" title="save topic" src="'.$yadb_url.'/img/save.png"></a> ';
         $output .= '<a onclick="cancel_edit_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="cancel_button" title="cancel" src="'.$yadb_url.'/img/cancel.png"></a>';
         $output .= '</div>';
 
@@ -59,19 +62,19 @@
         $output .= '</div>';
         $output .= '</th>';
         $output .= '</tr>';
-        $output .= '<tr style="background:#ffffff">';
+        $output .= '<tr id="'. $topic->id . '" style="background:#ffffff">';
         $output .= '<td class="yadb-noborder"></td><td  colspan=2 style="text-align:left;">';
         $output .= '<div id="postTextContainer">' . convert_smilies( $post_text ) . '</div>';
         $output .= '</td>';
         $output .= '</tr>';
 
       }
-      $output .= '<tr id="'. $topic->id .'" style="border-top-style:none;"><td class="yadb-noborder">'. get_avatar($cur_user->ID,50,"",$current_user->login).'</td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
+      $output .= '<tr id="tr-comment" style="border-top-style:none;"><td class="yadb-noborder">'. get_avatar($cur_user->ID,50,"",$current_user->user_login).'</td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
       $output .= '<div><textarea id="comment-topic-text" name="comment-topic"></textarea></div>';
       $output .= '</td></tr>';
 
-      $output .= '<tr id="'. $topic->id .'-footer" style="border-top-style:none;"><td class="yadb-noborder"></td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
-      $output .= '<div title="comment this Topic" id="btn_comment" class="yadb-comment-button" onclick="comment_topic(\'' . $topic->uuid . '\',\'' . $topic->id . '\');">COMMENT</div>';
+      $output .= '<tr id="tr-comment-btn" style="border-top-style:none;"><td class="yadb-noborder"></td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
+      $output .= '<div title="comment this Topic" id="btn_comment" class="yadb-comment-button" onclick="comment_topic(\'' . $topic->uuid . '\',\'' . $topic->id . '\',\'' . $current_user->user_login . '\');">COMMENT</div>';
       $output .= '</td></tr>';
 
       $output .= '</table></div>';

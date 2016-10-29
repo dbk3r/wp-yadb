@@ -77,8 +77,13 @@ function pin_topic(uuid,yadb_id,value) {
 
 }
 
-function comment_topic(yadb_uuid, yadb_id) {
-
+function comment_topic(yadb_uuid, yadb_id, yadb_user) {
+	var editor = tinymce.get('comment-topic-text');
+	content = editor.getContent({format : 'raw'});
+	var formData = {action:"commentTopic",reply:"1",user:yadb_user,uuid:yadb_uuid,content:content};
+	var retVal = ajaxExecute(formData);
+	var data =  jQuery.parseJSON(retVal);
+	loadTopicContent('',data.uuid);
 
 }
 
@@ -131,15 +136,20 @@ function delete_topic(yadb_id,reply,uuid) {
 		var formData = {action:"deleteTopic",yadb_id:yadb_id,reply:reply,uuid:uuid};
 		retval = ajaxExecute(formData);
 		var data =  jQuery.parseJSON(retval);
-		jQuery(".yadb-overlay").fadeOut();
-		jQuery(".topic-viewer").empty();
-		jQuery("#"+yadb_id).remove();
-
+		if(reply == '0')
+		{
+			jQuery(".yadb-overlay").fadeOut();
+			jQuery(".topic-viewer").empty();
+			jQuery("#"+yadb_id).remove();
+		}
+		else
+		{
+				jQuery("#"+yadb_id).remove();
+		}
 	}
 }
 
 function loadTopicContent(me,uuid) {
-
 	jQuery(".wpyadb_new_Topic_Header").hide();
 	jQuery(".wpyadb_Editor").slideUp();
 	jQuery(".wpyadb_menu_save").hide();
@@ -168,7 +178,7 @@ function loadTopicContent(me,uuid) {
 
 								}
 								jQuery(".topic-viewer").append(data);
-								rowOver(me,'1','transparent');
+								if(me) { rowOver(me,'1','transparent'); }
 								jQuery(".yadb-overlay").fadeIn();
 								tinymce.remove("textarea#comment-topic-text");
 								init_editor('#comment-topic-text', '100px');

@@ -20,6 +20,12 @@
 		$sql = "INSERT INTO $table_name set reply='$reply',uuid='$uuid',time='$datetime',username='$user',topic_text='$topic_text',post_text='" . $post_text ."',categorie='$category'";
 		$return_value = "{\"category\":\"" . $category . "\",\"desc\":\"" . base64_decode($topic_text) . "\",\"user\":\"" . $user . "\",\"uuid\":\"" . $uuid . "\",\"date\":\"" . $datetime ."\",\"statement\":\"". $sql ."\"}";
 	}
+	else if ($_POST['action'] == "commentTopic")
+	{
+		$sql = "INSERT INTO $table_name set reply='$reply',uuid='". $_POST['uuid'] . "',time='$datetime',username='$user',topic_text='$topic_text',post_text='" . $post_text ."',categorie='$category'";
+
+		$return_value = "{\"uuid\":\"" . $_POST['uuid'] . "\"}";
+	}
 	else if ($_POST['action'] == "pinTopic")
 	{
 		$yadb_id = $_POST['yid'];
