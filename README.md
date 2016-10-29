@@ -18,6 +18,7 @@ Features:
 ### ToDo
 
 - search Panel
+- sort by column
 
 
 ## INSTALL
