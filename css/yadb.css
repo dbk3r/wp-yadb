@@ -2,6 +2,11 @@
 border:none;
 vertical-align: top;
 }
+.yadb-trenner {
+border:none;
+height:30px;
+align: center;
+}
 
 .yadb-noborder-center {
   border:none;
@@ -15,6 +20,7 @@ vertical-align: top;
   width:100px;
   background-color:#eee;
   text-align:center;
+
   vertical-align: middle;
 }
 .yadb-comment-button:hover {

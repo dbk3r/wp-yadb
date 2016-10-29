@@ -67,6 +67,7 @@
         $output .= '<div id="postTextContainer">' . convert_smilies( $post_text ) . '</div>';
         $output .= '</td>';
         $output .= '</tr>';
+        $output .= '<tr><td class="yadb-noborder"></td><td class="yadb-trenner" colspan=2><img src="'.$yadb_url.'/img/arrow.png"></td></tr>';
 
       }
       $output .= '<tr id="tr-comment" style="border-top-style:none;"><td class="yadb-noborder">'. get_avatar($cur_user->ID,50,"",$current_user->user_login).'</td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
