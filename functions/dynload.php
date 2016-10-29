@@ -24,6 +24,7 @@
 
       foreach($topics as $topic) {
         $user = get_userdatabylogin($topic->username);
+        $cur_user = get_userdatabylogin($current_user->login);
         $post_text = base64_decode($topic->post_text);
         $post_text = str_replace("\\", "", $post_text);
 
@@ -65,7 +66,7 @@
         $output .= '</tr>';
 
       }
-      $output .= '<tr id="'. $topic->id .'" style="border-top-style:none;"><td class="yadb-noborder">'. get_avatar($user->ID,50,"",$current_user->login).'</td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
+      $output .= '<tr id="'. $topic->id .'" style="border-top-style:none;"><td class="yadb-noborder">'. get_avatar($cur_user->ID,50,"",$current_user->login).'</td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
       $output .= '<div><textarea id="comment-topic-text" name="comment-topic"></textarea></div>';
       $output .= '</td></tr>';
 
