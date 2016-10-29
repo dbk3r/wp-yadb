@@ -46,10 +46,14 @@ register_uninstall_hook( __FILE__, 'wpyadb_uninstall' );
 
 add_shortcode('wpyadb', 'insert_wpyadb');
 add_action('admin_init', 'wpyadb_init');
+add_action('admin_menu', 'wpyadb_setup');
 
+function wpyadb_setup(){
+        add_options_page( 'wp-yadb settings', 'WP-YaDB', 'manage_options', 'wpyadb-plugin', 'wpyadb_init' );
+}
 
 function wpyadb_init() {
-
+	echo '<div class="wrap">WP YaDB Settings</div>';
 }
 
 
