@@ -143,6 +143,8 @@ function delete_topic(yadb_id,reply,uuid) {
 			jQuery("#header"+yadb_id).remove();
 			jQuery("#content"+yadb_id).remove();
 			jQuery("#trenner"+yadb_id).remove();
+			jQuery("#"+yadb_id).remove();
+
 
 		}
 		else
