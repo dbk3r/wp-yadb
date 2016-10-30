@@ -4,7 +4,7 @@
 Plugin Name: Yust Another Discussion Board (YADB)
 Plugin URI: https://github.com/dbk3r/wp-yadb
 Description: Wordpress Discussion Board
-Version: 0.1.3
+Version: 0.1.4
 Author: Denis Becker
 */
 
@@ -45,18 +45,20 @@ register_activation_hook(__FILE__, 'wpyadb_activate');
 register_uninstall_hook( __FILE__, 'wpyadb_uninstall' );
 
 add_shortcode('wpyadb', 'insert_wpyadb');
-add_action('admin_init', 'wpyadb_init');
 add_action('admin_menu', 'wpyadb_setup');
 
 function wpyadb_setup(){
-        add_options_page( 'wp-yadb settings', 'WP-YaDB', 'manage_options', 'wpyadb-plugin', 'wpyadb_init' );
+        add_options_page( 'wp-yadb settings', 'WP-YaDB', 'manage_options', 'wpyadb-plugin', 'wpyadb_admin_init' );
 }
 
-function wpyadb_init() {
-	echo '<div class="wrap">WP YaDB Settings</div>';
+function wpyadb_admin_init() {
+	echo '<div class="wrap">';
+	echo '<h2>Yust another Discussion Board Settings</h2><br><br>';
+	echo 'allow Guest to add new Topic <input id="wpyadb_guestallowNewTopic" name="wpyadb_guestallowNewTopic" type="checkbox" checked><br>';
+	echo 'allow Guest to comment Topics <input id="wpyadb_guestallowcommentTopic" name="wpyadb_guestallowcommentTopic" type="checkbox" checked><br><br>';
+	echo 'rows per Page <input id="wpyadb_rowsperpage" name="wpyadb_rowsperpage" type="text" size="2" value="15">';
+	echo '</div>';
 }
-
-
 
 function wpyadb_activate() {
 

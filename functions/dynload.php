@@ -34,17 +34,17 @@
           $output .= '<p style="border:1px solid lightgrey;" id="topic_category">Category: '. $topic->categorie .'</p><h2>' . base64_decode($topic->topic_text) .'</h2>';
           $output .= '</td></tr>';
         }
-        $output .= '<tr id="'. $topic->id .'">';
+        $output .= '<tr id="header'. $topic->id .'">';
         $output .= '<td width=50 valign=top align=center class="yadb-noborder">' . get_avatar($user->ID,50,"",$topic->username). '</td>';
         $output .= '<th class="yadb-noborder-center">'. $topic->username . ' commented on ' . $topic->time .'</th>';
         $output .= '<th width=100 class="yadb-noborder-center">';
 
-        $output .= '<div id="edit_btn_set" style="display:none">';
-        $output .= '<a onclick="save_topic(\''. $topic->uuid .'\',\'' . $topic->id . '\');" style="cursor:pointer"><img id="save_button" title="save topic" src="'.$yadb_url.'/img/save.png"></a> ';
+        $output .= '<div id="edit_btn_set-'.$topic->id .'" style="display:none">';
+        $output .= '<a onclick="save_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="save_button" title="save topic" src="'.$yadb_url.'/img/save.png"></a> ';
         $output .= '<a onclick="cancel_edit_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="cancel_button" title="cancel" src="'.$yadb_url.'/img/cancel.png"></a>';
         $output .= '</div>';
 
-        $output .= '<div id="read_btn_set">';
+        $output .= '<div id="read_btn_set-'.$topic->id .'">';
         if ($current_user->user_login == $topic->username || current_user_can('editor') || current_user_can('administrator')) {
           $output .= '<a onclick="edit_topic(\'' . $topic->id . '\');" style="cursor:pointer"><img id="edit_button" title="edit topic" src="'.$yadb_url.'/img/edit-16.png"></a> ';
         }
@@ -62,12 +62,12 @@
         $output .= '</div>';
         $output .= '</th>';
         $output .= '</tr>';
-        $output .= '<tr id="'. $topic->id . '" style="background:#ffffff">';
+        $output .= '<tr id="content'. $topic->id . '" style="background:#ffffff">';
         $output .= '<td class="yadb-noborder"></td><td  colspan=2 style="text-align:left;">';
-        $output .= '<div id="postTextContainer">' . convert_smilies( $post_text ) . '</div>';
+        $output .= '<div id="postTextContainer-'.  $topic->id .'">' . convert_smilies( $post_text ) . '</div>';
         $output .= '</td>';
         $output .= '</tr>';
-        $output .= '<tr><td class="yadb-noborder"></td><td class="yadb-trenner" colspan=2><img src="'.$yadb_url.'/img/arrow.png"></td></tr>';
+        $output .= '<tr id="trenner'. $topic->id . '"><td class="yadb-noborder"></td><td class="yadb-trenner" colspan=2><img src="'.$yadb_url.'/img/arrow.png"></td></tr>';
 
       }
       $output .= '<tr id="tr-comment" style="border-top-style:none;"><td class="yadb-noborder">'. get_avatar($cur_user->ID,50,"",$current_user->user_login).'</td><td class="yadb-noborder" colspan=2 style="text-align:right;">';
@@ -92,10 +92,6 @@
     $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
     $position = (($page_number-1) * $item_per_page);
 
-    $reply_sql = "SELECT COUNT(*) AS total from " . $table_name . " where reply='1' ";
-    $replies_result = $wpdb->get_results($reply_sql);
-    if($replies_result->total) { $replies = $replies_result->total; } else { $replies = 0;}
-
     $sql = "SELECT * from " . $table_name . " where reply='0' ";
 
     $yadb_query =  $sql . " order by pinned DESC , time DESC LIMIT " . $position . "," . $item_per_page . ";";
@@ -104,6 +100,12 @@
     $output = '';
     if(!empty($topics)) {
       foreach($topics as $topic) {
+        $comments_sql = "SELECT COUNT(*) from ". $table_name . " where uuid='". $topic->uuid  ."'; ";
+        $comments_result = $wpdb->get_var($comments_sql);
+        $replies = $comments_result - 1;
+
+
+
         $user = get_userdatabylogin($topic->username);
         if ($user->ID) { $author = $topic->username; } else {$author = "Guest";}
         date_default_timezone_set("Europe/Berlin");

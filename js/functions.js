@@ -92,23 +92,23 @@ function save_topic(yadb_id) {
 	var editor = tinymce.get('wp-yadb_edit-topic');
 	content = editor.getContent({format : 'raw'});
 	wpyadb_save_topic(yadb_id ,"",jQuery('#topic_category').text(), "", content);
-	jQuery("#read_btn_set").show();
-	jQuery("#edit_btn_set").hide();
+	jQuery("#read_btn_set-"+yadb_id).show();
+	jQuery("#edit_btn_set-"+yadb_id).hide();
 	jQuery("#btn_reply").show();
-	jQuery("#postTextContainer").html(content);
+	jQuery("#postTextContainer-"+yadb_id).html(content);
 
 }
 
 function cancel_edit_topic(yadb_id) {
-	jQuery("#read_btn_set").show();
-	jQuery("#edit_btn_set").hide();
-	jQuery("#postTextContainer").html(jQuery("#wp-yadb_edit-topic").val());
+	jQuery("#read_btn_set-"+yadb_id).show();
+	jQuery("#edit_btn_set-"+yadb_id).hide();
+	jQuery("#postTextContainer-"+yadb_id).html(jQuery("#wp-yadb_edit-topic").val());
 }
 
 function edit_topic(yadb_id) {
-		jQuery("#postTextContainer").html("<textarea id='wp-yadb_edit-topic' name='wp-yadb_edit-topic'>" + jQuery("#postTextContainer").html() +"</textarea>");
-		jQuery("#read_btn_set").hide();
-		jQuery("#edit_btn_set").show();
+		jQuery("#postTextContainer-"+yadb_id).html("<textarea id='wp-yadb_edit-topic' name='wp-yadb_edit-topic'>" + jQuery("#postTextContainer-"+yadb_id).html() +"</textarea>");
+		jQuery("#read_btn_set-"+yadb_id).hide();
+		jQuery("#edit_btn_set-"+yadb_id).show();
 		tinymce.remove("textarea#wp-yadb_edit-topic");
 		init_editor('textarea#wp-yadb_edit-topic','200');
 
@@ -140,11 +140,16 @@ function delete_topic(yadb_id,reply,uuid) {
 		{
 			jQuery(".yadb-overlay").fadeOut();
 			jQuery(".topic-viewer").empty();
-			jQuery("#"+yadb_id).remove();
+			jQuery("#header"+yadb_id).remove();
+			jQuery("#content"+yadb_id).remove();
+			jQuery("#trenner"+yadb_id).remove();
+
 		}
 		else
 		{
-				jQuery("#"+yadb_id).remove();
+			jQuery("#header"+yadb_id).remove();
+			jQuery("#content"+yadb_id).remove();
+			jQuery("#trenner"+yadb_id).remove();
 		}
 	}
 }
