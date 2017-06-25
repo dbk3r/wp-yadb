@@ -1,8 +1,7 @@
 <?php
 	# save new topic to db
-	require( dirname( __FILE__ ) . '/../../../../wp-blog-header.php' );
-	require( dirname( __FILE__ ) . '/io.php' );
-
+	require_once( dirname( __FILE__ ) . '/../../../../wp-blog-header.php' );
+	require_once( dirname( __FILE__ ) . '/io.php' );
 
 	global $wpdb;
 	$table_name = $wpdb->prefix . 'wpyadb';

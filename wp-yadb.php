@@ -11,7 +11,7 @@ Author: Denis Becker
 function insert_wpyadb() {
 
 	global $current_user;
-	$yadb_url = plugins_url() . "/wp-yadb";
+	$yadb_url = plugins_url('',__FILE__ );
 
 	require_once(ABSPATH . 'wp-includes/category.php');
 	require_once('functions/io.php');
